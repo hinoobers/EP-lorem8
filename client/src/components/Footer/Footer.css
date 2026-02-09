@@ -1,6 +1,7 @@
 footer {
   width: 100%; 
   padding: 40px 20px;
+  border-top: 3px solid #3b82f6;
 }
 
 .footer-section {
@@ -62,4 +63,35 @@ footer {
   flex: 1 1 200px;
   font-size: 14px;
   color: #555;
+  text-align: right;
+  align-items: flex-end;
+}
+
+.footer-text-icons-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.footer-ref-icons ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-ref-icons a {
+  color: #0f1720;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d3d7df;
+  border-radius: 10px;
+  transition: background 120ms ease;
+}
+
+.footer-ref-icons a:hover {
+  background: #f5f7fb;
 }

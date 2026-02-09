@@ -3,7 +3,7 @@ import React from 'react'
 // import reactLogo from './assets/react.svg'
 import './App.css'
 
-import LandingPage from './components/LandingPage/LandingPage'
+import LandingPage from './pages/LandingPage/LandingPage'
 import Footer from './components/Footer/Footer'
 
 function App() {

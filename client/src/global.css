@@ -11,6 +11,7 @@ html {
 :root {
   /* colors */
   --primary-color: #1A2433; /* rgb(26, 36, 51) */
+  --base-color-light: #ffffff;
 
   /* font sizes */
   --text-px-48: 48px;

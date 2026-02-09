@@ -38,7 +38,7 @@ const Footer = () => {
           <p>E-mail: mariliis.maremae@tartumaa.ee</p>
         </div>
 
-        {/* <div className="footer-text-icons-container">
+        <div className="footer-text-icons-container">
           <div className="footer-ref-icons">
             <ul id="sicons">
               <li>
@@ -48,8 +48,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-
-        </div> */}
+        </div>
 
       </section>
 
