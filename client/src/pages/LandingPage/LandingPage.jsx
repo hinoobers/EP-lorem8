@@ -4,7 +4,10 @@ import "./LandingPage.css"
 import EV from "../../assets/ev.png" 
 import Kursus from "../../assets/kursus.png" 
 import Stats from "../../assets/stats.png" 
+import { useNavigate } from "react-router-dom" 
+
 const LandingPage = () => {
+  const navigate = useNavigate()
   return (
     <div className="landing">
       <img
@@ -22,7 +25,7 @@ const LandingPage = () => {
           <p>
             Kõik, mida oled õppinud ja saavutanud ühes passis, kergesti nähtav ja jagatav.
           </p>
-          <button className="cta">Loo enda pass!</button>
+          <button className="cta" onClick={() => navigate("/login")}>Loo enda pass!</button>
         </section>
 
         <section className="hero-cards" aria-label="Näidiskaardid">
