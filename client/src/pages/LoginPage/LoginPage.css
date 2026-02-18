@@ -41,6 +41,7 @@
   margin-bottom: 24px;
   font-size: 14px;
   color: #374151;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .close-button {
@@ -69,6 +70,7 @@
   margin: 0 0 32px 0;
   text-align: left;
   line-height: 1.2;
+  font-family: 'Clash Display', sans-serif;
 }
 
 .form-group {

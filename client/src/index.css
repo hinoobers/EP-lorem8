@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../src/fonts/ClashDisplay-Bold.woff2') format('woff2'),
+       url('../src/fonts/ClashDisplay-Bold.woff') format('woff');
+  font-weight: 200 900; /* Use range for variable fonts */
+  font-display: swap;
+}
+
 :root {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
