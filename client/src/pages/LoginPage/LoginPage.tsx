@@ -99,7 +99,13 @@ function LoginPage({ onShowTerms }: LoginPageProps) {
 
           <div className="button-group">
             <button type="submit" className="primary-button">Logi sisse</button>
-            <button type="button" className="secondary-button">Loo kasutaja</button>
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() => navigate('/register')}
+            >
+              Loo kasutaja
+            </button>
           </div>
         </form>
       </div>
