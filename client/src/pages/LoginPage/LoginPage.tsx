@@ -21,6 +21,10 @@ function LoginPage({ onShowTerms }: LoginPageProps) {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log('Login submitted', { email, password, agreeToTerms, rememberMe });
+    // For now, treat any non-empty credentials as a successful mock login
+    if (email && password && agreeToTerms) {
+      navigate('/home');
+    }
   };
 
   return (
