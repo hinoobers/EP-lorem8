@@ -28,17 +28,19 @@ const LandingPage = () => {
           <button className="cta" onClick={() => navigate("/login")}>Loo enda pass!</button>
         </section>
 
-        <section className="hero-cards" aria-label="Näidiskaardid">
-          <div className="card stats-card">
-            <img src={Stats} alt="Statistika" className="stats-img"/>
-          </div>
+        <section className="hero-cards-wrapper">
+          <div className="hero-cards" aria-label="Näidiskaardid">
+            <div className="card stats-card">
+              <img src={Stats} alt="Statistika" className="stats-img"/>
+            </div>
 
-          <div className="card profile-card">
-            <img src={EV} alt="Profiilipilt" className="profile-img"/>
-          </div>
+            <div className="card profile-card">
+              <img src={EV} alt="Profiilipilt" className="profile-img"/>
+            </div>
 
-          <div className="card course-card">
-            <img src={Kursus} alt="Kursus" className="course-img"/>
+            <div className="card course-card">
+              <img src={Kursus} alt="Kursus" className="course-img"/>
+            </div>
           </div>
         </section>
       </main>

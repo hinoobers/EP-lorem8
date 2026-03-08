@@ -14,6 +14,7 @@ const Footer = () => {
             fetchPriority="high"
             className="footer-img"
           />
+          <div className="divider"></div>
           <div className="footer-container-inner-text">
             <ul>
               <li>
