@@ -63,21 +63,21 @@ footer {
   color: black;
 }
 
+.contact-info {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  min-height: 100px;
+}
+
 .footer-container-contact {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  flex: 1 1 200px;
   font-size: 14px;
   color: #555;
   text-align: right;
   align-items: flex-end;
-}
-
-.footer-text-icons-container {
-  position: absolute;
-  top: 0;
-  right: 0;
 }
 
 .footer-ref-icons ul {
@@ -96,9 +96,4 @@ footer {
   height: 40px;
   border: 1px solid #d3d7df;
   border-radius: 10px;
-  transition: background 120ms ease;
-}
-
-.footer-ref-icons a:hover {
-  background: #f5f7fb;
 }

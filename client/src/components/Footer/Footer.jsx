@@ -34,20 +34,22 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="footer-container-contact">
-          <p>Telefon: +372 000 000 00</p>
-          <p>E-mail: mariliis.maremae@tartumaa.ee</p>
-        </div>
+        <div className="contact-info">
+          <div className="footer-text-icons-container">
+            <div className="footer-ref-icons">
+              <ul id="sicons">
+                <li>
+                  <a href="#">
+                    <LuInstagram />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-        <div className="footer-text-icons-container">
-          <div className="footer-ref-icons">
-            <ul id="sicons">
-              <li>
-                <a href="#">
-                  <LuInstagram />
-                </a>
-              </li>
-            </ul>
+          <div className="footer-container-contact">
+            <p>Telefon: +372 000 000 00</p>
+            <p>E-mail: mariliis.maremae@tartumaa.ee</p>
           </div>
         </div>
 
