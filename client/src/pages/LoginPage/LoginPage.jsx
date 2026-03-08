@@ -1,24 +1,17 @@
 import React, { useState, FormEvent } from 'react';
 import './LoginPage.css';
-// @ts-ignore – handled by bundler, image imported as URL string
 import backgroundImage from '../../assets/login_gradient.png';
-// @ts-ignore – handled by bundler, image imported as URL string
 import googleLoginButton from '../../assets/googleloginbutton.webp';
 import { useNavigate } from 'react-router-dom'; 
 
-interface LoginPageProps {
-    onShowTerms?: () => void;
-}
-
-
-function LoginPage({ onShowTerms }: LoginPageProps) {
+function LoginPage({ onShowTerms }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [agreeToTerms, setAgreeToTerms] = useState(true);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Login submitted', { email, password, agreeToTerms, rememberMe });
     // For now, treat any non-empty credentials as a successful mock login

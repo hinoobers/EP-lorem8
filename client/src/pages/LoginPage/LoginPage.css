@@ -161,12 +161,9 @@ form {
   border-radius: 4px;
 }
 
+.checkbox-label--remember input[type="checkbox"],
 .checkbox-label--terms input[type="checkbox"] {
   accent-color: #8b5cf6;
-}
-
-.checkbox-label--remember input[type="checkbox"] {
-  accent-color: #9ca3af;
 }
 
 .checkbox-text {
@@ -206,11 +203,6 @@ form {
   height: 74px;
   object-fit: contain;
   border-radius: 50%;
-}
-
-.google-button:hover {
-  background: #f9fafb;
-  border-color: #9ca3af;
 }
 
 .button-group {

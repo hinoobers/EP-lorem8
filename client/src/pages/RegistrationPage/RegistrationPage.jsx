@@ -1,28 +1,22 @@
 import React, { useState, FormEvent } from 'react';
 import './RegistrationPage.css';
-// @ts-ignore – handled by bundler, image imported as URL string
 import backgroundImage from '../../assets/login_gradient.png';
-// @ts-ignore – handled by bundler, image imported as URL string
 import googleLoginButton from '../../assets/googleloginbutton.webp';
 import { useNavigate } from 'react-router-dom';
 
-interface RegistrationPageProps {
-  onShowTerms?: () => void;
-}
-
-function RegistrationPage({ onShowTerms }: RegistrationPageProps) {
+function RegistrationPage({ onShowTerms }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [agreeToTerms, setAgreeToTerms] = useState(true);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!agreeToTerms) {
@@ -46,7 +40,7 @@ function RegistrationPage({ onShowTerms }: RegistrationPageProps) {
     });
   };
 
-  const handleTermsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleTermsClick = (e) => {
     e.preventDefault();
     if (onShowTerms) {
       onShowTerms();
