@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../assets/Sidebar.webp';
 import Check_circle from '../../assets/Check_circle.webp';
 import File_text from '../../assets/File_text.webp';
@@ -21,7 +22,7 @@ import './HomePage.css';
 
 function HomePage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
+  const navigate = useNavigate();
   return (
     <div
       className={`home-page ${
@@ -294,7 +295,7 @@ function HomePage() {
                   <p className="home-welcome-text">
                     Sinu pass ootab! Täida see ja näita oma arengut.
                   </p>
-                  <button type="button" className="home-welcome-button">
+                  <button type="button" className="home-welcome-button" onClick={() => navigate('/pass')}>
                     Passi täitma
                     <img src={Arrow_right} alt="" className="home-welcome-button-img" />
                   </button> 
