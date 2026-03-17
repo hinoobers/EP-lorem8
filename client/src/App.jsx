@@ -9,6 +9,7 @@ import LoginPage from './pages/LoginPage/LoginPage'
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse'
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
 import HomePage from './pages/HomePage/HomePage'
+import HomePageDark from './pages/HomePage/HomePageDark'
 import PassPersonalInfo from './pages/Pass/PassPersonalInfo/PassPersonalInfo'
 import Footer from './components/Footer/Footer'
 
@@ -27,6 +28,7 @@ function App() {
         <Route path='/terms' element={<TermsOfUse />} />
         <Route path='/register' element={<RegistrationPage />} />
         <Route path='/home' element={<HomePage />} />
+        <Route path="/home_dark" element={<HomePageDark/>}/>
         <Route path='/pass' element={<PassPersonalInfo />} />
       </Routes>
 

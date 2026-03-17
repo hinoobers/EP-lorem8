@@ -1,5 +1,5 @@
 import Navbar from "../../components/Navbar/Navbar"
-import gradientSquiggle from "../../assets/gradient squiggle.webp"
+import gradientSquiggle from "../../assets/landing_page.png"
 import "./LandingPage.css"
 import EV from "../../assets/ev.png" 
 import Kursus from "../../assets/kursus.png" 
