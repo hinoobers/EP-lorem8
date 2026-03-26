@@ -3,26 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../assets/dark/Sidebar.svg';
 import Check_circle from '../../assets/dark/Check_circle.svg';
 import File_text from '../../assets/dark/File_text.svg';
+import Oskused from '../../assets/dark/Box.svg';
 import Archive from '../../assets/dark/Archive.svg';
 import Settings from '../../assets/dark/Settings.svg';
 import Headphones from '../../assets/dark/Headphones.svg';
-import Award from '../../assets/Award.webp';
 import Mail from '../../assets/dark/Mail.svg';
 import Bell from '../../assets/dark/Bell.svg';
-import Edit from '../../assets/Edit.webp';
+import Edit from '../../assets/dark/Edit.svg';
+import Share1 from '../../assets/dark/Share.svg';
 import Share from '../../assets/Share.webp';
-import Share1 from '../../assets/Share1.webp';
-import ChevronDown from '../../assets/Chevron_down.webp';
-import Menu from '../../assets/Menu.webp';
-import Arrow_right from '../../assets/Arrow_right.webp';
-import leen_muster from '../../assets/LEEN_muster_1_1.webp';
-import sun from '../../assets/Sun.webp';
-import moon from '../../assets/Moon.webp';
+import Plus from '../../assets/dark/Plus.svg';
+import Search from '../../assets/dark/Search.svg';
+import Sun from '../../assets/dark/Sun.svg';
+import Moon from '../../assets/dark/Moon.svg';
+import ArrowRight from '../../assets/dark/Arrow right.svg';
+import Briefcase from '../../assets/dark/Bar chart-2.svg';
+import Bookmark from '../../assets/dark/Book.svg';
+import ChevronRight from '../../assets/dark/Chevron right.svg';
+import Package from '../../assets/dark/Package.svg';
 import './HomePageDark.css';
 
 function HomePageDark() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const navigate = useNavigate();
+
   return (
     <div
       className={`home-page ${
@@ -50,30 +54,15 @@ function HomePageDark() {
 
             <nav className="home-nav" aria-label="Põhinavigatsioon">
               <button type="button" className="home-nav-item home-nav-item--active">
-                <img
-                  src={Check_circle}
-                  alt=""
-                  className="home-nav-icon-img"
-                  aria-hidden="true"
-                />
+                <img src={Check_circle} alt="" className="home-nav-icon-img" aria-hidden="true" />
                 <span className="home-nav-label">Töölaud</span>
               </button>
               <button type="button" className="home-nav-item">
-                <img
-                  src={File_text}
-                  alt=""
-                  className="home-nav-icon-img"
-                  aria-hidden="true"
-                />
+                <img src={File_text} alt="" className="home-nav-icon-img" aria-hidden="true" />
                 <span className="home-nav-label">Pass</span>
               </button>
               <button type="button" className="home-nav-item">
-                <img
-                  src={Archive}
-                  alt=""
-                  className="home-nav-icon-img"
-                  aria-hidden="true"
-                />
+                <img src={Archive} alt="" className="home-nav-icon-img" aria-hidden="true" />
                 <span className="home-nav-label">Kogemused</span>
               </button>
             </nav>
@@ -82,21 +71,11 @@ function HomePageDark() {
 
             <div className="home-sidebar-bottom">
               <button type="button" className="home-sidebar-link">
-                <img
-                  src={Settings}
-                  alt=""
-                  className="home-sidebar-icon-img"
-                  aria-hidden="true"
-                />
+                <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
                 <span>Settings</span>
               </button>
               <button type="button" className="home-sidebar-link">
-                <img
-                  src={Headphones}
-                  alt=""
-                  className="home-sidebar-icon-img"
-                  aria-hidden="true"
-                />
+                <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
                 <span>Support</span>
               </button>
 
@@ -106,21 +85,19 @@ function HomePageDark() {
                   <div className="home-user-name">Karoliine Tamm</div>
                   <div className="home-user-email">KaroliineT@gmail.com</div>
                 </div>
-                <span className="home-user-chevron" aria-hidden="true">
-                  ›
-                </span>
+                <img src={ChevronRight} alt="" className="home-user-chevron-img" aria-hidden="true" />
               </div>
 
               <div className="home-theme-toggle" aria-label="Välimuse valik">
                 <button type="button" className="home-theme-pill home-theme-pill--active">
                   <span className="home-theme-icon" aria-hidden="true">
-                    <img src={sun} alt="" />
+                    <img src={Sun} alt="" />
                   </span>
                   <span>Light</span>
                 </button>
                 <button type="button" className="home-theme-pill home-theme-pill--muted">
                   <span className="home-theme-icon" aria-hidden="true">
-                    <img src={moon} alt="" />
+                    <img src={Moon} alt="" />
                   </span>
                   <span>Dark</span>
                 </button>
@@ -145,7 +122,7 @@ function HomePageDark() {
             <div className="home-header-name">Karoliine Tamm</div>
 
             <div className="home-search" role="search">
-              <span className="home-search-icon" aria-hidden="true" />
+              <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
               <input
                 type="search"
                 className="home-search-input"
@@ -164,141 +141,137 @@ function HomePageDark() {
             </div>
           </header>
 
-          <section className="home-actions-row" aria-label="Kiirtoimingud">
-            <button type="button" className="home-primary-cta">
-              Lisa uus kogemus
+          <div className="home-header-divider" />
+
+          <div className="home-actions-bar" aria-label="Kiirtoimingud">
+            <button type="button" className="home-action-btn">
+              <span>Lisa kogemus</span>
+              <img src={Plus} alt="" className="home-action-icon" aria-hidden="true" />
             </button>
-            <button type="button" className="home-secondary-cta">
+            <div className="home-actions-divider" aria-hidden="true" />
+            <button type="button" className="home-action-btn">
               Muuda passi
             </button>
-            <button type="button" className="home-secondary-cta home-secondary-cta--with-icon">
+            <div className="home-actions-divider" aria-hidden="true" />
+            <button type="button" className="home-action-btn">
               <span>Jaga passi</span>
-              <span className="home-share-icon" aria-hidden="true">
-                <img src={Share} alt="" className="home-share-icon-img" />
-              </span>
+              <img src={Share} alt="" className="home-action-icon" aria-hidden="true" />
             </button>
-          </section>
+          </div>
 
           <section className="home-content-row">
+            {/* Left column */}
             <div className="home-column home-column--main">
-              <section className="home-section">
-                <h2 className="home-section-title">Statistika</h2>
 
-                <div className="home-stats-row">
-                  <div className="home-stat-card home-stat-card--pink">
-                    <div className="home-stat-header">
-                      <div className="home-stat-icon-circle">
-                        <img
-                          src={Award}
-                          alt=""
-                          className="home-stat-icon-img"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div className="home-stat-value">0</div>
-                    </div>
-                    <div className="home-stat-label">Kogemust kokku</div>
-                  </div>
+              {/* Welcome card */}
+              <section className="home-welcome-card" aria-label="Tere tulemast">
+                {/* Decorative Package icons matching Figma positions */}
+                <img src={Package} alt="" aria-hidden="true" className="home-welcome-pkg home-welcome-pkg--tl" />
+                <img src={Package} alt="" aria-hidden="true" className="home-welcome-pkg home-welcome-pkg--tr" />
+                <img src={Package} alt="" aria-hidden="true" className="home-welcome-pkg home-welcome-pkg--bl" />
+                <img src={Package} alt="" aria-hidden="true" className="home-welcome-pkg home-welcome-pkg--br" />
 
-                  <div className="home-stat-card home-stat-card--cyan">
-                    <div className="home-stat-header">
-                      <div className="home-stat-icon-circle">
-                        <img
-                        src={Award}
-                          alt=""
-                          className="home-stat-icon-img"
-                          aria-hidden="true"
-                        />
-                      </div>
-                      <div className="home-stat-value">+0</div>
-                    </div>
-                    <div className="home-stat-label">Uut kogemust sel kuul</div>
-                  </div>
+                <div className="home-welcome-content">
+                  <h2 className="home-welcome-heading">Tere tulemast!</h2>
+                  <p className="home-welcome-text">
+                    Sinu pass ootab!{' '}
+                    Täida see ja näita oma arengut.
+                  </p>
+                  <button
+                    type="button"
+                    className="home-welcome-button"
+                    onClick={() => navigate('/pass')}
+                  >
+                    Passi täitma
+                    <img src={ArrowRight} alt="" className="home-welcome-button-img" />
+                  </button>
                 </div>
               </section>
 
-              <section className="home-section home-pass-card" aria-label="Pass">
-                <header className="home-pass-header">
-                  <h2 className="home-pass-title">Pass</h2>
-                  <div className="home-pass-header-actions">
-                    <button
-                      type="button"
-                      className="home-pass-icon-button"
-                      aria-label="Redigeeri passi"
-                    >
-                      <img src={Edit} alt="" className="home-pass-icon-img" />
-                    </button>
-                    <button
-                      type="button"
-                      className="home-pass-icon-button"
-                      aria-label="Jaga passi"
-                    >
-                      <img src={Share1} alt="" className="home-pass-icon-img" />
+              {/* Two mini stat cards */}
+              <div className="home-mini-cards-row">
+                <section className="home-mini-card" aria-label="Kogemuste staatus">
+                  <div className="home-mini-card-header">
+                    <span className="home-mini-card-title">Kogemuste staatus</span>
+                  </div>
+                  <div className="home-mini-card-divider" />
+                  <p className="home-mini-card-empty">Kogemused puuduvad</p>
+                </section>
+
+                <section className="home-mini-card" aria-label="Lisatud kogemused">
+                  <div className="home-mini-card-header">
+                    <span className="home-mini-card-title">Lisatud kogemused</span>
+                    <button type="button" className="home-mini-card-plus" aria-label="Lisa kogemus">
+                      <img src={Plus} alt="" className="home-mini-plus-img" aria-hidden="true" />
                     </button>
                   </div>
-                </header>
+                  <div className="home-mini-card-divider" />
+                  <p className="home-mini-card-empty">Kogemused puuduvad</p>
+                  <div className="home-mini-card-footer">
+                    <button type="button" className="home-pill-button">
+                      Detailne vaade
+                    </button>
+                  </div>
+                </section>
+              </div>
+            </div>
 
+            {/* Right column — Pass card */}
+            <div className="home-column home-column--side">
+              <section className="home-pass-card" aria-label="Pass">
+                <div className="home-pass-top">
+                  <span className="home-pass-title">Pass</span>
+                </div>
                 <div className="home-pass-divider" />
 
-                <div className="home-pass-body">
-                  <p>Pass on tühi</p>
+                <div className="home-pass-section">
+                  <div className="home-pass-section-row">
+                    <div className="home-pass-section-icon">
+                      <img src={Briefcase} alt="" className="home-pass-section-icon-img" aria-hidden="true" />
+                    </div>
+                    <div className="home-pass-section-info">
+                      <span className="home-pass-section-title">Töökogemused</span>
+                    </div>
+                    <span className="home-pass-section-count">0 kogemust lisatud</span>
+                  </div>
+                </div>
+
+                <div className="home-pass-section">
+                  <div className="home-pass-section-row">
+                    <div className="home-pass-section-icon">
+                      <img src={Bookmark} alt="" className="home-pass-section-icon-img" aria-hidden="true" />
+                    </div>
+                    <div className="home-pass-section-info">
+                      <span className="home-pass-section-title">Õppekäik</span>
+                    </div>
+                    <span className="home-pass-section-count">0 kogemust lisatud</span>
+                  </div>
+                </div>
+
+                <div className="home-pass-section">
+                  <div className="home-pass-section-row">
+                    <div className="home-pass-section-icon">
+                      <img src={Oskused} alt="" className="home-pass-section-icon-img" aria-hidden="true" />
+                    </div>
+                    <div className="home-pass-section-info">
+                      <span className="home-pass-section-title">Oskused ja kogemused</span>
+                    </div>
+                    <span className="home-pass-section-count">0 kogemust lisatud</span>
+                  </div>
                 </div>
 
                 <div className="home-pass-footer">
                   <button type="button" className="home-pill-button">
                     Detailne vaade
                   </button>
-                </div>
-              </section>
-            </div>
-
-            <div className="home-column home-column--side">
-              <section className="home-section home-experiences-card" aria-label="Kogemused">
-                <header className="home-experiences-header">
-                  <h2 className="home-experiences-title">Kogemused</h2>
-                  <div className="home-chip-group">
-                    <button type="button" className="home-chip">
-                      Sorteeri
-                      <img
-                        src={ChevronDown}
-                        alt=""
-                        className="home-chip-icon-img"
-                        aria-hidden="true"
-                      />
+                  <div className="home-pass-footer-icons">
+                    <button type="button" className="home-pass-icon-button" aria-label="Redigeeri passi">
+                      <img src={Edit} alt="" className="home-pass-icon-img" />
                     </button>
-                    <button type="button" className="home-chip">
-                      Filtreeri
-                      <img
-                        src={Menu}
-                        alt=""
-                        className="home-chip-icon-img"
-                        aria-hidden="true"
-                      />
+                    <button type="button" className="home-pass-icon-button" aria-label="Jaga passi">
+                      <img src={Share1} alt="" className="home-pass-icon-img" />
                     </button>
                   </div>
-                </header>
-
-                <div className="home-experiences-divider" />
-
-                <p className="home-empty-label">Kogemused puuduvad</p>
-              </section>
-
-              <section className="home-section home-welcome-card" aria-label="Tere tulemast">
-                <img
-                  src={leen_muster}
-                  alt=""
-                  className="home-welcome-bg"
-                  aria-hidden="true"
-                />
-                <div className="home-welcome-content">
-                  <h2 className="home-welcome-heading">Tere tulemast!</h2>
-                  <p className="home-welcome-text">
-                    Sinu pass ootab! Täida see ja näita oma arengut.
-                  </p>
-                  <button type="button" className="home-welcome-button" onClick={() => navigate('/pass')}>
-                    Passi täitma
-                    <img src={Arrow_right} alt="" className="home-welcome-button-img" />
-                  </button> 
                 </div>
               </section>
             </div>
@@ -307,6 +280,6 @@ function HomePageDark() {
       </div>
     </div>
   );
-};
+}
 
 export default HomePageDark;

@@ -1,3 +1,4 @@
+/* ─── Page shell ───────────────────────────────────────────── */
 .home-page {
   min-height: 100vh;
   box-sizing: border-box;
@@ -5,9 +6,8 @@
   justify-content: stretch;
   align-items: stretch;
   background-color: #000000;
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
-  color: #000000;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #ffffff;
 }
 
 .home-layout {
@@ -15,15 +15,17 @@
   width: 100%;
 }
 
+/* ─── Sidebar ──────────────────────────────────────────────── */
 .home-sidebar {
   width: 232px;
-  background-color: #1D1D1DC2;
-  background-image: none;
-  border-right: 1px solid #f1f2fc;
+  min-width: 232px;
+  background: #1d1d1d;
+  border-right: 1px solid #2a2a2a;
   padding: 24px 16px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .home-sidebar-header {
@@ -38,11 +40,11 @@
 }
 
 .home-logo {
-  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
+  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
   font-size: 20px;
+  line-height: 1.2;
 }
 
 .home-sidebar-toggle {
@@ -54,11 +56,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .home-sidebar-toggle img {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   display: block;
 }
 
@@ -68,10 +71,10 @@
   left: 20px;
   z-index: 20;
   border: none;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(29, 29, 29, 0.9);
   padding: 6px;
   border-radius: 999px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -87,14 +90,14 @@
 .home-sidebar-section-label {
   font-size: 12px;
   font-weight: 700;
-  color: white;
-  margin-bottom: 12px;
+  color: #ffffff;
+  margin-bottom: 8px;
 }
 
 .home-nav {
   display: contents;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .home-nav-item {
@@ -108,20 +111,21 @@
   background: transparent;
   cursor: pointer;
   text-align: left;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
 }
 
 .home-nav-item--active {
-
+  background: rgba(29, 29, 29, 0.76);
+  border: 1px solid #515151;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid #FFFFFF3D;
 }
 
 .home-nav-icon-img {
   width: 20px;
   height: 20px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .home-sidebar-spacer {
@@ -142,59 +146,68 @@
   border: none;
   background: none;
   cursor: pointer;
-  color: white;
+  color: #ffffff;
   font-size: 16px;
 }
 
-.home-sidebar-icon {
-  width: 16px;
-  text-align: center;
-  font-size: 14px;
-}
-
 .home-sidebar-icon-img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 .home-user-card {
-  background: #1D1D1DC2;
+  background: rgba(29, 29, 29, 0.76);
+  border: 1px solid #515151;
   border-radius: 8px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
-  position: relative;
-  border: 1px solid #FFFFFF3D;
+  gap: 8px;
+  overflow: hidden;
 }
 
 .home-user-avatar {
   width: 28px;
   height: 28px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
-  margin-right: 12px;
+  background: linear-gradient(135deg, #a276ff, #dfcdff);
+  flex-shrink: 0;
+}
+
+.home-user-text {
+  flex: 1;
+  min-width: 0;
 }
 
 .home-user-name {
   font-size: 12px;
-  color: white;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .home-user-email {
   font-size: 10px;
-  color: white;
+  color: #aaaaaa;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.home-user-chevron {
-  margin-left: auto;
-  font-size: 14px;
+.home-user-chevron-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 1;
 }
 
 .home-theme-toggle {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 4px;
 }
 
 .home-theme-pill {
@@ -203,81 +216,75 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 4px 10px;
+  padding: 5px 10px;
   border-radius: 8px;
-  border: 1px solid transparent;
-  background: #ffffff;
+  border: 1px solid #515151;
+  background: rgba(29, 29, 29, 0.76);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   font-size: 14px;
-}
-
-.home-theme-pill--muted {
-  background: #ececec;
-  color: #707070;
-  box-shadow: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: #ffffff;
 }
 
 .home-theme-pill--active {
-  color: #1e1e1e;
+  border-color: #d2d2d2;
 }
 
-.home-theme-icon {
-  font-size: 14px;
+.home-theme-pill--muted {
+  color: #aaaaaa;
 }
 
+.home-theme-icon img {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
+/* ─── Main content area ────────────────────────────────────── */
 .home-main {
   flex: 1;
   background-color: #000000;
   padding: 24px 32px;
   box-sizing: border-box;
+  min-width: 0;
 }
 
+/* ─── Header ───────────────────────────────────────────────── */
 .home-header {
   display: grid;
-  grid-template-columns: auto minmax(260px, 1fr) auto;
+  grid-template-columns: auto 1fr auto;
   gap: 24px;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .home-header-name {
-  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
-  font-weight: 600;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 700;
   font-size: 18px;
-  color: white;
+  color: #ffffff;
+  white-space: nowrap;
 }
 
 .home-search {
   display: flex;
   align-items: center;
   height: 32px;
-  padding: 0 12px 0 16px;
+  padding: 0 16px;
   border-radius: 16px;
-  border: 1px solid #d5d5d5;
-  background: rgba(253, 253, 253, 0.92);
+  border: 0.4px solid #4e4e4e;
+  background: rgba(29, 29, 29, 0.76);
+  gap: 10px;
 }
 
-.home-search-icon {
+.home-search-icon-img {
   width: 16px;
   height: 16px;
-  border-radius: 999px;
-  border: 2px solid #b5b5b5;
-  margin-right: 12px;
-  position: relative;
-}
-
-.home-search-icon::after {
-  content: '';
-  position: absolute;
-  width: 7px;
-  height: 2px;
-  background: #b5b5b5;
-  border-radius: 999px;
-  transform: rotate(45deg);
-  right: -4px;
-  bottom: -1px;
+  object-fit: contain;
+  flex-shrink: 0;
+  opacity: 1;
 }
 
 .home-search-input {
@@ -286,11 +293,12 @@
   flex: 1;
   background: transparent;
   font-size: 16px;
-  color: #4c4c4c;
+  color: #ffffff;
+  min-width: 0;
 }
 
 .home-search-input::placeholder {
-  color: #4c4c4c;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .home-header-icons {
@@ -303,358 +311,390 @@
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  border: 1px solid #D5D5D5;
-  background: #1D1D1DC2;
+  border: 0.4px solid #4e4e4e;
+  background: rgba(29, 29, 29, 0.76);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  font-size: 14px;
+  flex-shrink: 0;
 }
 
 .home-icon-img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   object-fit: contain;
   display: block;
 }
 
-.home-actions-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.home-primary-cta {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  color: #ffffff;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 0, 255, 0.9),
-    rgba(0, 255, 255, 0.9)
-  );
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.home-secondary-cta {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  background: #000000;
-  color: #ffffff;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.home-secondary-cta--with-icon .home-share-icon {
-  display: inline-flex;
-  align-items: center;
-}
-
-.home-share-icon-img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  display: block;
-}
-
-.home-content-row {
-  display: grid;
-  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
-  gap: 24px;
-}
-
-.home-section {
-  margin-bottom: 24px;
-}
-
-.home-section-title {
-  font-size: 14px;
-  font-weight: 700;
-  color: #4c4c4c;
-  margin-bottom: 12px;
-}
-
-.home-stats-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.home-stat-card {
-  background: #fafafd;
-  border-radius: 16px;
-  border: 1px solid #d9d9d9;
-  padding: 8px 12px;
-  min-width: 152px;
-}
-
-.home-stat-header {
-  display: flex;
-  gap: 8px;
-  align-items: baseline;
-  margin-bottom: 6px;
-}
-
-.home-stat-icon-circle {
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #ffffff;
-  font-size: 18px;
-  overflow: hidden;
-}
-
-.home-stat-icon-img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-  display: block;
-}
-
-.home-stat-card--pink .home-stat-icon-circle {
-  background: #f44ef4;
-}
-
-.home-stat-card--cyan .home-stat-icon-circle {
-  background: #57e1e1;
-}
-
-.home-stat-value {
-  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
-  font-size: 32px;
-  font-weight: 700;
-  color: #3e3e3e;
-}
-
-.home-stat-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: #3e3e3e;
-}
-
-.home-pass-card {
-  background: rgba(253, 253, 253, 0.76);
-  border-radius: 16px;
-  border: 1px solid #d5d5d5;
-  padding: 12px 16px 16px;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-}
-
-.home-pass-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.home-pass-title {
-  font-size: 16px;
-  font-weight: 500;
-  color: #1f1f1f;
-}
-
-.home-pass-header-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.home-pass-icon-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  border: 1px solid #d5d5d5;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.home-pass-divider {
+.home-header-divider {
   height: 1px;
-  background: #e0e0e0;
+  background: #3a3a3a;
   margin-bottom: 16px;
 }
 
-.home-pass-body {
-  flex: 1;
+/* ─── Actions bar ──────────────────────────────────────────── */
+.home-actions-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: #757575;
-  text-align: center;
+  background: rgba(29, 29, 29, 0.76);
+  border: 0.4px solid #4e4e4e;
+  border-radius: 12px;
+  padding: 0 4px;
+  height: 48px;
+  margin-bottom: 24px;
+  width: fit-content;
+  gap: 0;
 }
 
-.home-pass-footer {
-  display: flex;
-  justify-content: center;
-  margin-top: 12px;
-}
-
-.home-pill-button {
-  padding: 3px 21px;
-  border-radius: 20px;
-  border: 1px solid #ff00ff;
-  background: #000000;
-  color: #ffffff;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.home-experiences-card {
-  background: rgba(253, 253, 253, 0.76);
-  border-radius: 16px;
-  border: 1px solid #d5d5d5;
-  padding: 12px 16px 70px;
-}
-
-.home-experiences-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.home-experiences-title {
-  font-size: 16px;
-  font-weight: 600;
-  color: #1f1f1f;
-}
-
-.home-chip-group {
-  display: flex;
-  gap: 8px;
-}
-
-.home-chip {
-  padding: 3px 10px;
-  border-radius: 10px;
-  border: 1px solid #d5d5d5;
-  background: #ffffff;
-  font-size: 14px;
-  cursor: pointer;
+.home-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: #ffffff;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+  white-space: nowrap;
 }
 
-.home-chip-icon-img {
-  width: 14px;
-  height: 14px;
+.home-action-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.home-action-icon {
+  width: 16px;
+  height: 16px;
   object-fit: contain;
   display: block;
 }
 
-.home-experiences-divider {
-  height: 1px;
-  background: #e0e0e0;
-  margin-top: 8px;
+.home-actions-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
-.home-empty-label {
-  font-size: 12px;
-  color: #757575;
-  margin-top: 60px;
-  text-align: center;
+/* ─── Content grid ─────────────────────────────────────────── */
+.home-content-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
 }
 
+/* ─── Welcome card ─────────────────────────────────────────── */
 .home-welcome-card {
   position: relative;
   overflow: hidden;
   border-radius: 19px;
   border: 1px solid #d5d5d5;
-  padding: 16px 18px;
+  padding: 16px 18px 20px;
   background-image: linear-gradient(
-    to top right,
-    #ff00ff 40%,
-    #fafbfc 80%
+    185.7deg,
+    rgba(250, 251, 252, 0.81) 0.92%,
+    rgba(162, 118, 255, 0.81) 91%
   );
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  color: #ffffff;
+  margin-bottom: 16px;
+  min-height: 175px;
 }
 
-.home-welcome-bg {
+.home-welcome-pkg {
   position: absolute;
-  inset: -20px;
-  width: calc(100% + 40px);
-  height: calc(100% + 40px);
-  object-fit: cover;
-  opacity: 0.7;
+  width: 128px;
+  height: 128px;
   pointer-events: none;
+  opacity: 0.9;
 }
 
-.home-welcome-overlay {
-  position: absolute;
-  inset: -40px;
-  background-image: radial-gradient(
-      circle at 10% 0%,
-      rgba(255, 255, 255, 0.3),
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 80% 100%,
-      rgba(255, 255, 255, 0.25),
-      transparent 55%
-    );
-  opacity: 0.7;
-  pointer-events: none;
+.home-welcome-pkg--tl {
+  left: 40px;
+  top: -26px;
+}
+
+.home-welcome-pkg--tr {
+  right: 250px;
+  top: -37px;
+}
+
+.home-welcome-pkg--bl {
+  right: 420px;
+  top: 80px;
+}
+
+.home-welcome-pkg--br {
+  right: 50px;
+  top: 86px;
 }
 
 .home-welcome-content {
   position: relative;
+  z-index: 1;
 }
 
 .home-welcome-heading {
-  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
-  font-weight: 700;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 400;
   font-size: 20px;
+  color: #000000;
   margin: 0 0 8px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25),
-    0 4px 30px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
 }
 
 .home-welcome-text {
-  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', sans-serif;
+  font-family: 'Clash Display', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-weight: 700;
   font-size: 20px;
-  margin: 0 0 16px;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  color: #000000;
+  margin: 0 0 20px;
+  line-height: 1.3;
+  max-width: 310px;
 }
 
 .home-welcome-button {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 7px 16px;
+  padding: 7px 15px;
   border-radius: 12px;
   border: none;
-  background: #ffffff;
-  color: #000000;
+  background: rgba(29, 29, 29, 0.76);
+  color: #dfcdff;
   font-size: 16px;
   cursor: pointer;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.home-welcome-button-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* ─── Mini stat cards ──────────────────────────────────────── */
+.home-mini-cards-row {
+  display: flex;
+  gap: 16px;
+}
+
+.home-mini-card {
+  flex: 1;
+  background: rgba(29, 29, 29, 0.76);
+  border: 0.4px solid #4e4e4e;
+  border-radius: 16px;
+  padding: 12px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 115px;
+}
+
+.home-mini-card:last-child {
+  min-height: 144px;
+}
+
+.home-mini-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.home-mini-card-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.home-mini-card-plus {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.home-mini-plus-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
+}
+
+.home-mini-card-divider {
+  height: 1px;
+  background: #3a3a3a;
+  margin-bottom: 12px;
+}
+
+.home-mini-card-empty {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  padding-left: 14px;
+  flex: 1;
+}
+
+.home-mini-card-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+/* ─── Shared pill button ───────────────────────────────────── */
+.home-pill-button {
+  padding: 3px 21px;
+  border-radius: 20px;
+  border: 1px solid rgba(252, 250, 251, 0.76);
+  background: rgba(29, 29, 29, 0.76);
+  color: #ffffff;
+  font-size: 14px;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ─── Pass card ────────────────────────────────────────────── */
+.home-pass-card {
+  background: rgba(29, 29, 29, 0.76);
+  border: 0.4px solid #4e4e4e;
+  border-radius: 16px;
+  padding: 12px 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-pass-top {
+  padding: 0 12px;
+}
+
+.home-pass-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.home-pass-divider {
+  height: 1px;
+  background: #3a3a3a;
+  margin: 0 8px;
+}
+
+/* ─── Pass sections (inner rounded cards) ──────────────────── */
+.home-pass-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: rgba(29, 29, 29, 0.76);
+  border-radius: 15px;
+  padding: 10px 12px;
+  min-height: 152px;
+  flex-direction: column;
+  position: relative;
+}
+
+.home-pass-section-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+}
+
+.home-pass-section-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.home-pass-section-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+.home-pass-section-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-pass-section-title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.home-pass-section-count {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ─── Pass card footer ─────────────────────────────────────── */
+.home-pass-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px 0;
+}
+
+.home-pass-footer-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.home-pass-icon-button {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.home-pass-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ─── Column layout ────────────────────────────────────────── */
+.home-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .home-content-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -664,9 +704,11 @@
 
   .home-sidebar {
     width: 100%;
+    min-width: unset;
+    min-height: unset;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
-    background-color: #1D1D1DC2;
     gap: 24px;
   }
 
@@ -678,25 +720,20 @@
   .home-main {
     padding: 16px;
   }
-
-  .home-content-row {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 @media (max-width: 768px) {
-  .home-page {
-    padding: 16px;
-  }
-
   .home-header {
     grid-template-columns: 1fr;
     gap: 12px;
   }
 
-  .home-actions-row {
+  .home-actions-bar {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .home-mini-cards-row {
     flex-direction: column;
-    align-items: stretch;
   }
 }
-
