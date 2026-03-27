@@ -11,6 +11,7 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage'
 import HomePage from './pages/HomePage/HomePage'
 import HomePageDark from './pages/HomePage/HomePageDark'
 import PassPersonalInfo from './pages/Pass/PassPersonalInfo/PassPersonalInfo'
+import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path="/home_dark" element={<HomePageDark/>}/>
         <Route path='/pass' element={<PassPersonalInfo />} />
+        <Route path='/support' element={<SupportPage />} />
       </Routes>
 
       <Footer />

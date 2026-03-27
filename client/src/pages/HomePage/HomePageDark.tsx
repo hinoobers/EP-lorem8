@@ -74,7 +74,7 @@ function HomePageDark() {
                 <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
                 <span>Settings</span>
               </button>
-              <button type="button" className="home-sidebar-link">
+              <button type="button" className="home-sidebar-link" onClick={() => navigate('/support')}>
                 <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
                 <span>Support</span>
               </button>
