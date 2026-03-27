@@ -1,4 +1,4 @@
-/* Page/layout */
+/* ─── Page/layout ───────────────────────────────────────────── */
 
 .pass-layout {
   display: flex;
@@ -15,73 +15,30 @@
   margin-top: 8px;
 }
 
+/* ─── Back button (top of main area) ───────────────────────── */
+
 .pass-back-button {
   display: inline-flex;
   width: 40px;
   height: 32px;
-  padding: 0;
+  padding: 0 8px;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
-  border: 1px solid #d5d5d5;
-  background: #f3f3f3;
+  border-radius: 8px;
+  border: 1px solid #4e4e4e;
+  background: rgba(29, 29, 29, 0.76);
   cursor: pointer;
   margin-bottom: 8px;
 }
 
 .pass-back-button img {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
 }
 
-.pass-stepper {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  justify-content: center;
-}
-
-.pass-stepper-title {
-  font-size: 14px;
-  font-weight: 600;
-  color: #1f1f1f;
-}
-
-.pass-step-icon {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: #e5e7eb;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pass-step-icon--green {
-  background: #22c55e;
-}
-
-.pass-step-icon--user {
-  background: #60d12a;
-}
-
-.pass-step-icon img {
-  width: 12px;
-  height: 12px;
-}
-
-.pass-required {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: #6b7280;
-}
-
-.pass-required-icon {
-  width: 14px;
-  height: 14px;
-}
+/* ─── Progress rail ─────────────────────────────────────────── */
 
 .pass-progress {
   display: flex;
@@ -102,31 +59,58 @@
   justify-content: center;
 }
 
+.pass-step-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #f4f4f4;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-step-icon--user {
+  background: #8ace00;
+}
+
+.pass-step-icon img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
 .pass-progress-step--active .pass-step-icon {
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 2px rgba(138, 206, 0, 0.35);
 }
 
 .pass-progress-connector {
   flex: 1;
   height: 6px;
   border-radius: 999px;
-  background: #e5e7eb;
+  background: #3a3a3a;
 }
 
 .pass-progress-connector--active {
-  background-image: linear-gradient(90deg, #ff00ff, #ffff00);
+  background: #8ace00;
 }
 
 .pass-progress-labels {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  color: #4b5563;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .pass-progress-label {
   min-width: 0;
 }
+
+.pass-progress-label--active {
+  color: #8ace00;
+  font-weight: 500;
+}
+
+/* ─── Shell body grid ───────────────────────────────────────── */
 
 .pass-shell-body,
 .pass-content-row {
@@ -136,13 +120,13 @@
   align-items: flex-start;
 }
 
-/* Form card */
+/* ─── Form card ─────────────────────────────────────────────── */
 
 .pass-form-card {
-  background: rgba(253, 253, 253, 0.9);
-  border-radius: 16px;
-  border: 1px solid #d5d5d5;
-  padding: 20px 20px 16px;
+  background: rgba(29, 29, 29, 0.76);
+  border-radius: 25px;
+  border: 0.4px solid rgba(255, 255, 255, 0.24);
+  padding: 20px 24px 20px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -159,6 +143,7 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
+  width: 100%;
 }
 
 .pass-form-title-group {
@@ -170,24 +155,23 @@
 
 .pass-form-title {
   margin: 0;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 600;
-  color: #1f1f1f;
-}
-
-.pass-form-subtitle {
-  margin: 0;
-  font-size: 13px;
-  color: #666666;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .pass-form-required-label {
   font-size: 12px;
-  color: #4b5563;
+  color: rgba(255, 255, 255, 1);
   white-space: nowrap;
   margin-top: 2px;
   text-align: right;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
 }
+
+/* ─── Form body/grid ────────────────────────────────────────── */
 
 .pass-form-body {
   margin-top: 4px;
@@ -210,29 +194,33 @@
 }
 
 .pass-field-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: #3e3e3e;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  font-family: Arial, system-ui, sans-serif;
 }
 
 .pass-field-input {
   border-radius: 10px;
-  border: 1px solid #d5d5d5;
+  border: 1px solid #515151;
   padding: 8px 10px;
-  font-size: 14px;
+  font-size: 12px;
   outline: none;
-  background: #ffffff;
-  color: #1f1f1f;
+  background: transparent;
+  color: #ffffff;
   resize: vertical;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .pass-field-input::placeholder {
-  color: #9a9a9a;
+  color: #757575;
 }
 
 .pass-field-input:focus {
-  border-color: #ff00ff;
-  box-shadow: 0 0 0 1px rgba(255, 0, 255, 0.3);
+  border-color: #8ace00;
+  box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(138, 206, 0, 0.3);
 }
 
 .pass-field-textarea {
@@ -241,203 +229,173 @@
 
 .pass-select {
   padding-right: 30px;
-  background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
-    linear-gradient(135deg, #9ca3af 50%, transparent 50%);
-  background-position: calc(100% - 16px) 12px, calc(100% - 11px) 12px;
+  background-image: linear-gradient(45deg, transparent 50%, rgba(255,255,255,0.6) 50%),
+    linear-gradient(135deg, rgba(255,255,255,0.6) 50%, transparent 50%);
+  background-position: calc(100% - 14px) 13px, calc(100% - 9px) 13px;
   background-size: 5px 5px, 5px 5px;
   background-repeat: no-repeat;
   appearance: none;
 }
 
-.pass-form-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Fix select options in dark mode */
+.pass-select option {
+  background: #1d1d1d;
+  color: #ffffff;
+}
+
+.pass-add-language {
   margin-top: 4px;
-  border-top: none;
-}
-
-.pass-form-footer-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.pass-save-button {
-  background: #000000;
-  color: #f0f0f0;
-  border: 1px solid #ff00ff;
-  border-radius: 16px;
-  padding: 7px 34px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-}
-
-.pass-save-button:hover {
-  background: #111111;
-  transform: translateY(-1px);
-}
-
-.pass-chevron-button {
-  width: 45px;
-  height: 32px;
-  border-radius: 999px;
-  border: none;
-  background: #ff00ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   padding: 0;
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #ffffff;
+  cursor: default;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: Arial, system-ui, sans-serif;
 }
 
-.pass-chevron-button img {
+.pass-add-language-icon {
   width: 16px;
   height: 16px;
   object-fit: contain;
 }
 
-.pass-add-language {
-  margin-top: 2px;
-  padding: 0;
-  border: none;
-  background: none;
-  font-size: 13px;
-  color: #111827;
-  cursor: default;
-  align-self: flex-start;
+/* ─── Form footer — 3 buttons ───────────────────────────────── */
+
+.pass-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 10px -12px -20px;
+  padding: 14px 24px 20px;
+  border-top: 1px solid rgba(252, 250, 251, 0.76);
 }
 
-/* Preview side */
+.pass-save-button {
+  flex: 1;
+  background: rgba(29, 29, 29, 0.76);
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 16px;
+  padding: 7px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.pass-save-button:hover {
+  background: rgba(50, 50, 50, 0.9);
+}
+
+.pass-nav-pill {
+  width: 49px;
+  height: 31px;
+  border-radius: 16px;
+  border: 1px solid #ffffff;
+  background: rgba(29, 29, 29, 0.76);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: background 0.2s;
+}
+
+.pass-nav-pill:hover {
+  background: rgba(50, 50, 50, 0.9);
+}
+
+.pass-nav-pill img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+/* ─── Preview card ──────────────────────────────────────────── */
 
 .pass-preview-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  background: #ffffff;
+  background: rgba(29, 29, 29, 0.76);
   border-radius: 25px;
-  border: 1px solid #e5e7eb;
-  padding: 16px 20px 20px;
+  border: 0.4px solid rgba(255, 255, 255, 0.24);
+  overflow: hidden;
+  min-height: 400px;
 }
 
 .pass-preview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.pass-preview-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+  padding: 14px 20px 10px;
 }
 
 .pass-preview-title {
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
-  color: #1f1f1f;
+  color: #ffffff;
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.pass-preview-subtitle {
-  margin: 0;
-  font-size: 13px;
-  color: #666666;
+.pass-preview-divider {
+  height: 1px;
+  background: rgba(252, 250, 251, 0.76);
+  margin: 0 20px;
 }
 
-.pass-preview-inner {
-  background: transparent;
-}
+/* ─── Preview body — photo + info row ──────────────────────── */
 
-.pass-preview-pass-card {
-  border-radius: 18px;
-  border: 1px solid #e5e7eb;
-  padding: 12px 12px 14px;
-  background: #ffffff;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+.pass-preview-body {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 260px;
+  flex-direction: row;
+  gap: 16px;
+  flex: 1;
+  padding: 20px 20px 16px;
+  min-height: 260px;
 }
 
 .pass-preview-photo {
-  width: 100%;
-  padding-top: 70%;
-  border-radius: 14px;
-  background-image: radial-gradient(circle at 10% 0%, #f97316, transparent 55%),
-    radial-gradient(circle at 80% 100%, #ec4899, transparent 60%);
-  background-size: cover;
+  width: 117px;
+  min-width: 117px;
+  border-radius: 15px;
+  background: #2a2a2a;
+  background-image: linear-gradient(
+    160deg,
+    rgba(60, 60, 60, 0.8) 0%,
+    rgba(30, 30, 30, 0.9) 100%
+  );
+  flex-shrink: 0;
+  align-self: stretch;
 }
 
-.pass-preview-main-card {
+.pass-preview-info-col {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 0;
 }
 
 .pass-preview-name-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .pass-preview-name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  color: #111827;
-}
-
-.pass-preview-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.pass-preview-pill {
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  background: #f3f4ff;
-  color: #374151;
-}
-
-.pass-preview-section {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 8px;
-}
-
-.pass-preview-section-title {
-  font-size: 11px;
-  font-weight: 600;
-  color: #6b7280;
-  margin-bottom: 4px;
-}
-
-.pass-preview-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.pass-preview-list li {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  color: #374151;
-}
-
-.pass-preview-bullet {
-  width: 4px;
-  height: 4px;
-  border-radius: 999px;
-  background: #4f46e5;
+  color: #ffffff;
+  font-family: Arial, system-ui, sans-serif;
+  line-height: 1.2;
 }
 
 .pass-preview-chips-row {
@@ -447,19 +405,87 @@
 }
 
 .pass-preview-chip-ghost {
-  font-size: 11px;
+  font-size: 10px;
   padding: 2px 8px;
   border-radius: 999px;
-  border: 1px solid #e5e7eb;
-  background: #f9fafb;
-  color: #374151;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-.pass-preview-tagline {
-  margin: 6px 0 0;
-  font-size: 11px;
-  color: #4b5563;
+.pass-preview-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 8px;
 }
+
+.pass-preview-section-title {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 5px;
+  font-family: 'Inter', system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.pass-preview-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pass-preview-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.pass-preview-bullet {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #8ace00;
+  flex-shrink: 0;
+}
+
+/* ─── Preview footer (Edit / Share) ────────────────────────── */
+
+.pass-preview-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 10 -20px -14px;
+  padding: 10px 20px 14px;
+  border-top: 1px solid rgba(252, 250, 251, 0.76);
+}
+
+.pass-preview-icon-btn {
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pass-preview-icon-btn img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ─── Responsive ────────────────────────────────────────────── */
 
 @media (max-width: 900px) {
   .pass-shell-body,
@@ -475,5 +501,15 @@
 
   .pass-form-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pass-preview-body {
+    flex-direction: column;
+  }
+
+  .pass-preview-photo {
+    width: 100%;
+    min-width: unset;
+    height: 180px;
   }
 }

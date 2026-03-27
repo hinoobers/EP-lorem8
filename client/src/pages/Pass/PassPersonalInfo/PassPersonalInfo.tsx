@@ -2,24 +2,30 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import SidebarIcon from '../../../assets/Sidebar.svg';
-import CheckCircle from '../../../assets/Check circle.svg';
-import FileText from '../../../assets/File text.svg';
-import Archive from '../../../assets/Archive.svg';
-import Settings from '../../../assets/Settings.svg';
-import Headphones from '../../../assets/Headphones.svg';
-import Sun from '../../../assets/Sun.svg';
-import Moon from '../../../assets/Moon.svg';
-import Mail from '../../../assets/Mail.svg';
-import Bell from '../../../assets/Bell.svg';
-import ChevronRight from '../../../assets/Arrow right.svg';
-import ArrowLeft from '../../../assets/Arrow left.svg';
-import UserIcon from '../../../assets/User.svg';
-import Briefcase from '../../../assets/Briefcase.svg';
-import Bookmark from '../../../assets/Bookmark.svg';
-import Zap from '../../../assets/Zap.svg';
+import SidebarIcon from '../../../assets/dark/Sidebar.svg';
+import CheckCircle from '../../../assets/dark/Check_circle.svg';
+import FileText from '../../../assets/dark/File_text.svg';
+import Archive from '../../../assets/dark/Archive.svg';
+import Settings from '../../../assets/dark/Settings.svg';
+import Headphones from '../../../assets/dark/Headphones.svg';
+import Sun from '../../../assets/dark/Sun.svg';
+import Moon from '../../../assets/dark/Moon.svg';
+import Mail from '../../../assets/dark/Mail.svg';
+import Bell from '../../../assets/dark/Bell.svg';
+import ChevronRight from '../../../assets/dark/Arrow right.svg';
+import ArrowLeft from '../../../assets/dark/Arrow left.svg';
+import UserIcon from '../../../assets/dark/User.svg';
+import Briefcase from '../../../assets/dark/Briefcase.svg';
+import Bookmark from '../../../assets/dark/Bookmark.svg';
+import Zap from '../../../assets/dark/Zap.svg';
+import EditIcon from '../../../assets/dark/Edit.svg';
+import ShareIcon from '../../../assets/dark/Share.svg';
+import ChevronRightUser from '../../../assets/dark/Chevron right.svg';
+import PlusIcon from '../../../assets/dark/Plus.svg';
+import Search from '../../../assets/dark/Search.svg';
 
-import '../../HomePage/HomePage.css';
+
+import '../../HomePage/HomePageDark.css';
 import './PassPersonalInfo.css';
 
 type PassFormData = {
@@ -72,7 +78,7 @@ const PassPersonalInfo: React.FC = () => {
   const [previewData, setPreviewData] = useState<PassFormData>(defaultPreview);
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
     setFormData((prev) => ({
@@ -127,10 +133,7 @@ const PassPersonalInfo: React.FC = () => {
                 />
                 <span className="home-nav-label">Töölaud</span>
               </button>
-              <button
-                type="button"
-                className="home-nav-item"
-              >
+              <button type="button" className="home-nav-item">
                 <img
                   src={FileText}
                   alt=""
@@ -172,6 +175,20 @@ const PassPersonalInfo: React.FC = () => {
                 <span>Support</span>
               </button>
 
+              <div className="home-user-card">
+                <div className="home-user-avatar" aria-hidden="true" />
+                <div className="home-user-text">
+                  <div className="home-user-name">Karoliine Tamm</div>
+                  <div className="home-user-email">KaroliineT@gmail.com</div>
+                </div>
+                <img
+                  src={ChevronRightUser}
+                  alt=""
+                  className="home-user-chevron-img"
+                  aria-hidden="true"
+                />
+              </div>
+
               <div className="home-theme-toggle" aria-label="Välimuse valik">
                 <button
                   type="button"
@@ -212,7 +229,7 @@ const PassPersonalInfo: React.FC = () => {
             <div className="home-header-name">Karoliine Tamm</div>
 
             <div className="home-search" role="search">
-              <span className="home-search-icon" aria-hidden="true" />
+            <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
               <input
                 type="search"
                 className="home-search-input"
@@ -242,19 +259,15 @@ const PassPersonalInfo: React.FC = () => {
           <button
             type="button"
             className="pass-back-button"
-            onClick={() => navigate('/home')}
+            onClick={() => navigate('/home_dark')}
             aria-label="Tagasi töölauale"
           >
             <img src={ArrowLeft} alt="" aria-hidden="true" />
           </button>
 
           <div className="pass-shell">
-            <header className="pass-shell-header">
-              <div className="pass-shell-header-main">
-              </div>
-            </header>
-
             <section className="pass-shell-body">
+              {/* Form card */}
               <section className="pass-form-card" aria-label="Isiklik info">
                 <header className="pass-form-header">
                   <div className="pass-form-title-row">
@@ -329,207 +342,223 @@ const PassPersonalInfo: React.FC = () => {
                   </div>
 
                   <div className="pass-progress-labels">
-                    <span className="pass-progress-label">Isiklik info</span>
-                    <span className="pass-progress-label">Töökogemus</span>
-                    <span className="pass-progress-label">Haridus</span>
-                    <span className="pass-progress-label">Oskused</span>
+                    <span className={`pass-progress-label ${currentStep === 0 ? 'pass-progress-label--active' : ''}`}>
+                      Isiklik info
+                    </span>
+                    <span className={`pass-progress-label ${currentStep === 1 ? 'pass-progress-label--active' : ''}`}>
+                      Töökogemus
+                    </span>
+                    <span className={`pass-progress-label ${currentStep === 2 ? 'pass-progress-label--active' : ''}`}>
+                      Haridus
+                    </span>
+                    <span className={`pass-progress-label ${currentStep === 3 ? 'pass-progress-label--active' : ''}`}>
+                      Oskused
+                    </span>
                   </div>
                 </div>
 
                 <div className="pass-form-body">
                   <div className="pass-form-grid">
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="firstName">
-                      Eesnimi*
-                    </label>
-                    <input
-                      id="firstName"
-                      name="firstName"
-                      type="text"
-                      className="pass-field-input"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="firstName">
+                        Eesnimi*
+                      </label>
+                      <input
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        className="pass-field-input"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="lastName">
-                      Perekonna nimi*
-                    </label>
-                    <input
-                      id="lastName"
-                      name="lastName"
-                      type="text"
-                      className="pass-field-input"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="lastName">
+                        Perekonna nimi*
+                      </label>
+                      <input
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        className="pass-field-input"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="email">
-                      E-post*
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="pass-field-input"
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="email">
+                        E-post*
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        className="pass-field-input"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="phone">
-                      Telefon
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      className="pass-field-input"
-                      placeholder="+372 ..."
-                      value={formData.phone}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="phone">
+                        Telefon
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        className="pass-field-input"
+                        placeholder="+372"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="birthDate">
-                      Sünniaeg
-                    </label>
-                    <input
-                      id="birthDate"
-                      name="birthDate"
-                      type="text"
-                      className="pass-field-input"
-                      placeholder="00.00.0000"
-                      value={formData.birthDate}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="birthDate">
+                        Sünniaeg
+                      </label>
+                      <input
+                        id="birthDate"
+                        name="birthDate"
+                        type="text"
+                        className="pass-field-input"
+                        placeholder="00.00.0000"
+                        value={formData.birthDate}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="gender">
-                      Sugu
-                    </label>
-                    <select
-                      id="gender"
-                      name="gender"
-                      className="pass-field-input pass-select"
-                      value={formData.gender}
-                      onChange={handleChange}
-                    >
-                      <option value="">Vali</option>
-                      <option value="Naine">Naine</option>
-                      <option value="Mees">Mees</option>
-                      <option value="Muu">Muu</option>
-                    </select>
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="gender">
+                        Sugu
+                      </label>
+                      <select
+                        id="gender"
+                        name="gender"
+                        className="pass-field-input pass-select"
+                        value={formData.gender}
+                        onChange={handleChange}
+                      >
+                        <option value="">Vali</option>
+                        <option value="Naine">Naine</option>
+                        <option value="Mees">Mees</option>
+                        <option value="Muu">Muu</option>
+                      </select>
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="country">
-                      Riik
-                    </label>
-                    <input
-                      id="country"
-                      name="country"
-                      type="text"
-                      className="pass-field-input"
-                      value={formData.country}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="country">
+                        Riik
+                      </label>
+                      <input
+                        id="country"
+                        name="country"
+                        type="text"
+                        className="pass-field-input"
+                        value={formData.country}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="className">
-                      Linn
-                    </label>
-                    <input
-                      id="city"
-                      name="city"
-                      type="text"
-                      className="pass-field-input"
-                      value={formData.city}
-                      onChange={handleChange}
-                    />
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="city">
+                        Linn
+                      </label>
+                      <input
+                        id="city"
+                        name="city"
+                        type="text"
+                        className="pass-field-input"
+                        value={formData.city}
+                        onChange={handleChange}
+                      />
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="language">
-                      Keeleoskus
-                    </label>
-                    <input
-                      id="language"
-                      name="language"
-                      type="text"
-                      className="pass-field-input"
-                      placeholder='Näiteks "eesti keel"'
-                      value={formData.language}
-                      onChange={handleChange}
-                    />
-                    <button
-                      type="button"
-                      className="pass-add-language"
-                      disabled
-                    >
-                      + Lisa keel
-                    </button>
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="language">
+                        Keeleoskus
+                      </label>
+                      <select
+                        id="language"
+                        name="language"
+                        className="pass-field-input pass-select"
+                        value={formData.language}
+                        onChange={handleChange}
+                      >
+                        <option value="">Vali</option>
+                        <option value="eesti keel">Eesti keel</option>
+                        <option value="inglise keel">Inglise keel</option>
+                        <option value="vene keel">Vene keel</option>
+                      </select>
+                      <button
+                        type="button"
+                        className="pass-add-language"
+                        disabled
+                      >
+                        <img src={PlusIcon} alt="" className="pass-add-language-icon" aria-hidden="true" />
+                        Lisa keel
+                      </button>
+                    </div>
 
-                  <div className="pass-field">
-                    <label className="pass-field-label" htmlFor="languageLevel">
-                      Tase
-                    </label>
-                    <select
-                      id="languageLevel"
-                      name="languageLevel"
-                      className="pass-field-input pass-select"
-                      value={formData.languageLevel}
-                      onChange={handleChange}
-                    >
-                      <option value="">Vali</option>
-                      <option value="emakeel">Emakeel</option>
-                      <option value="C1">C1</option>
-                      <option value="B2">B2</option>
-                      <option value="B1">B1</option>
-                    </select>
-                  </div>
+                    <div className="pass-field">
+                      <label className="pass-field-label" htmlFor="languageLevel">
+                        Tase
+                      </label>
+                      <select
+                        id="languageLevel"
+                        name="languageLevel"
+                        className="pass-field-input pass-select"
+                        value={formData.languageLevel}
+                        onChange={handleChange}
+                      >
+                        <option value="">Vali</option>
+                        <option value="emakeel">Emakeel</option>
+                        <option value="C1">C1</option>
+                        <option value="B2">B2</option>
+                        <option value="B1">B1</option>
+                      </select>
+                    </div>
 
-                  
-
-                  <div className="pass-field pass-field--full">
-                    <label className="pass-field-label" htmlFor="tagline">
-                      Enesetutvustus
-                    </label>
-                    <textarea
-                      id="tagline"
-                      name="tagline"
-                      className="pass-field-input pass-field-textarea"
-                      value={formData.tagline}
-                      onChange={handleChange}
-                      rows={3}
-                    />
-                  </div>
-
+                    <div className="pass-field pass-field--full">
+                      <label className="pass-field-label" htmlFor="tagline">
+                        Enesetutvustus
+                      </label>
+                      <textarea
+                        id="tagline"
+                        name="tagline"
+                        className="pass-field-input pass-field-textarea"
+                        value={formData.tagline}
+                        onChange={handleChange}
+                        rows={3}
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <footer className="pass-form-footer">
-                  <div className="pass-form-footer-main">
-                    <button
-                      type="button"
-                      className="pass-save-button"
-                      onClick={handleSave}
-                    >
-                      Salvesta
-                    </button>
-                  </div>
+                  <button
+                    type="button"
+                    className="pass-nav-pill"
+                    aria-label="Eelmine samm"
+                    onClick={() => setCurrentStep((prev) => Math.max(prev - 1, 0))}
+                  >
+                    <img src={ArrowLeft} alt="" aria-hidden="true" />
+                  </button>
 
                   <button
                     type="button"
-                    className="pass-chevron-button"
+                    className="pass-save-button"
+                    onClick={handleSave}
+                  >
+                    Salvesta
+                  </button>
+
+                  <button
+                    type="button"
+                    className="pass-nav-pill"
                     aria-label="Salvesta ja liigu edasi"
                     onClick={handleSave}
                   >
@@ -538,65 +567,69 @@ const PassPersonalInfo: React.FC = () => {
                 </footer>
               </section>
 
+              {/* Preview card */}
               <section className="pass-preview-card" aria-label="Passi eelvaade">
                 <header className="pass-preview-header">
-                  <div className="pass-preview-title-group">
-                    <h2 className="pass-preview-title">Passi eelvaade</h2>
-                  </div>
+                  <h2 className="pass-preview-title">Passi eelvaade</h2>
                 </header>
 
-                <div className="pass-preview-inner">
-                  <div className="pass-preview-pass-card">
-                    <div className="pass-preview-photo" aria-hidden="true" />
+                <div className="pass-preview-divider" />
 
-                    <div className="pass-preview-main-card">
-                      <div className="pass-preview-name-block">
-                        <div className="pass-preview-name">
-                          {previewData.firstName || defaultPreview.firstName}{' '}
-                          {previewData.lastName || defaultPreview.lastName}
-                        </div>
-                      </div>
+                <div className="pass-preview-body">
+                  <div className="pass-preview-photo" aria-hidden="true" />
 
-                      <div className="pass-preview-section">
-                        <div className="pass-preview-section-title">Kontakt</div>
-                        <ul className="pass-preview-list">
-                          <li>
-                            <span className="pass-preview-bullet" />
-                            <span>
-                              {previewData.email || defaultPreview.email}
-                            </span>
-                          </li>
-                          <li>
-                            <span className="pass-preview-bullet" />
-                            <span>
-                              {previewData.phone || defaultPreview.phone}
-                            </span>
-                          </li>
-                          <li>
-                            <span className="pass-preview-bullet" />
-                            <span>
-                              {previewData.city || defaultPreview.city},{' '}
-                              {previewData.country || defaultPreview.country}
-                            </span>
-                          </li>
-                        </ul>
+                  <div className="pass-preview-info-col">
+                    <div className="pass-preview-name-block">
+                      <div className="pass-preview-name">
+                        {previewData.firstName || defaultPreview.firstName}{' '}
+                        {previewData.lastName || defaultPreview.lastName}
                       </div>
+                      <div className="pass-preview-chips-row">
+                        <span className="pass-preview-chip-ghost">
+                          {previewData.city || defaultPreview.city}
+                        </span>
+                        <span className="pass-preview-chip-ghost">
+                          {previewData.birthDate ? previewData.birthDate.split('.')[2] : '19'}
+                        </span>
+                      </div>
+                    </div>
 
-                      <div className="pass-preview-section">
-                        <div className="pass-preview-section-title">Keeled</div>
-                        <div className="pass-preview-chips-row">
-                          <span className="pass-preview-chip-ghost">
-                            {previewData.language || defaultPreview.language}
-                          </span>
-                          <span className="pass-preview-chip-ghost">
-                            {previewData.languageLevel ||
-                              defaultPreview.languageLevel}
-                          </span>
-                        </div>
-                      </div>
+                    <div className="pass-preview-section">
+                      <div className="pass-preview-section-title">Kontakt</div>
+                      <ul className="pass-preview-list">
+                        <li>
+                          <span className="pass-preview-bullet" />
+                          <span>{previewData.phone || defaultPreview.phone}</span>
+                        </li>
+                        <li>
+                          <span className="pass-preview-bullet" />
+                          <span>{previewData.email || defaultPreview.email}</span>
+                        </li>
+                        <li>
+                          <span className="pass-preview-bullet" />
+                          <span>{previewData.city || defaultPreview.city}</span>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
+
+                <footer className="pass-preview-footer">
+                  <button
+                    type="button"
+                    className="pass-preview-icon-btn"
+                    aria-label="Redigeeri passi"
+                  >
+                    <img src={EditIcon} alt="" aria-hidden="true" />
+                  </button>
+                  <button
+                    type="button"
+                    className="pass-preview-icon-btn"
+                    aria-label="Jaga passi"
+                  >
+                    <img src={ShareIcon} alt="" aria-hidden="true" />
+                  </button>
+                </footer>
               </section>
             </section>
           </div>
@@ -607,4 +640,3 @@ const PassPersonalInfo: React.FC = () => {
 };
 
 export default PassPersonalInfo;
-
