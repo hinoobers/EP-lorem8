@@ -10,14 +10,12 @@
 }
 
 .terms-modal {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
+  background: var(--background-gray-color);
   border-radius: 25px;
   padding: 0;
   width: 100%;
   max-width: 863px;
   max-height: 85vh;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   position: relative;
   z-index: 1;
   display: flex;
@@ -25,34 +23,20 @@
   overflow: hidden;
 }
 
-.terms-modal::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 25px;
-  padding: 2px;
-  background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-}
-
 .terms-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 24px 32px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 0.5px solid var(--light-select-color);
   flex-shrink: 0;
 }
 
 .terms-title {
   font-size: 18px;
   font-weight: 500;
-  color: #000000;
+  color: var(--text-0-color);
   margin: 0;
-  font-family: 'Arial', sans-serif;
 }
 
 .terms-header-right {
@@ -63,9 +47,8 @@
 
 .terms-date {
   font-size: 14px;
-  color: #000000;
+  color: var(--text-0-color);
   font-weight: 400;
-  font-family: 'Inter', system-ui, sans-serif;
 }
 
 .close-button {
@@ -79,13 +62,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #374151;
-  transition: color 0.2s;
+  color: var(--light-select-color);
   flex-shrink: 0;
-}
-
-.close-button:hover {
-  color: #000;
 }
 
 .terms-content {
@@ -99,17 +77,13 @@
 }
 
 .terms-content::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
+  background: var(--background-gray-color);
   border-radius: 4px;
 }
 
 .terms-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--light-select-color);
   border-radius: 4px;
-}
-
-.terms-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
 }
 
 .terms-section {
@@ -123,17 +97,16 @@
 .terms-section h3 {
   font-size: 15px;
   font-weight: 500;
-  color: #000;
+  color: var(--text-0-color);
   margin: 0 0 12px 0;
   line-height: 1.4;
 }
 
 .terms-section p {
   font-size: 14px;
-  color: #000000;
+  color: var(--text-0-color);
   line-height: 1.6;
   margin: 0 0 8px 0;
-  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 500;
 }
 
@@ -144,10 +117,9 @@
 
 .terms-section li {
   font-size: 14px;
-  color: #000000;
+  color: var(--text-0-color);
   line-height: 1.6;
   margin-bottom: 6px;
-  font-family: 'Inter', system-ui, sans-serif;
   font-weight: 500;
 }
 
