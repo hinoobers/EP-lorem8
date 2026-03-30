@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './TermsOfUse.css';
-import backgroundImage from '../../assets/login_gradient.png';
+import backgroundImage from '../../assets/log_in.svg';
 
 function TermsOfUse() {
   const navigate = useNavigate();

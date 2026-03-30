@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import './LoginPage.css';
-import backgroundImage from '../../assets/login_gradient.png';
+import backgroundImage from '../../assets/log_in.svg';
 import googleLoginButton from '../../assets/googleloginbutton.webp';
 import { useNavigate } from 'react-router-dom'; 
 
@@ -24,8 +24,7 @@ function LoginPage({ onShowTerms }) {
     <div
       className="login-page"
       style={{
-        // Show gradient behind and the squiggle image on top
-        backgroundImage: `url(${backgroundImage}), linear-gradient(135deg, #eff3ff 2%, #fbfaf8 57%, #ffecec 100%)`,
+        backgroundImage: `url(${backgroundImage})`
       }}
     >
       <div className="login-modal">
@@ -87,7 +86,7 @@ function LoginPage({ onShowTerms }) {
           </div>
 
           <div className="divider">
-            <span>logi sisse muul viisil</span>
+            <span>Logi sisse muul viisil</span>
           </div>
 
           <button type="button" className="google-button">

@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import './RegistrationPage.css';
-import backgroundImage from '../../assets/login_gradient.png';
+import backgroundImage from '../../assets/register_bg.svg';
 import googleLoginButton from '../../assets/googleloginbutton.webp';
 import { useNavigate } from 'react-router-dom';
 

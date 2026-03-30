@@ -11,6 +11,9 @@ html {
 :root {
   /* colors */
   --text-0-color: #ffffff;
+  --text-1-color: #468bdc;
+  --text-2-color: #000000;
+
   
   /* borders and other */
   --warning-color: #ec221f;
