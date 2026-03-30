@@ -1,23 +1,20 @@
 import Navbar from "../../components/Navbar/Navbar"
-import gradientSquiggle from "../../assets/landing_page.png"
+import landingPageBg from "../../assets/landing_page_bg_v2.svg"
 import "./LandingPage.css"
-import EV from "../../assets/ev.png" 
-import Kursus from "../../assets/kursus.png" 
-import Stats from "../../assets/stats.png" 
 import { useNavigate } from "react-router-dom" 
 
 const LandingPage = () => {
   const navigate = useNavigate()
   return (
     <div className="landing">
+      <Navbar />
       <img
-        src={gradientSquiggle}
-        alt=""
+        src={landingPageBg}
+        alt="Background image"
         aria-hidden="true"
         className="landing-bg"
         fetchPriority="high"
       />
-      <Navbar />
 
       <main className="hero">
         <section className="hero-text">
@@ -26,22 +23,6 @@ const LandingPage = () => {
             Kõik, mida oled õppinud ja saavutanud ühes passis, kergesti nähtav ja jagatav.
           </p>
           <button className="cta" onClick={() => navigate("/login")}>Loo enda pass!</button>
-        </section>
-
-        <section className="hero-cards-wrapper">
-          <div className="hero-cards" aria-label="Näidiskaardid">
-            <div className="card stats-card">
-              <img src={Stats} alt="Statistika" className="stats-img"/>
-            </div>
-
-            <div className="card profile-card">
-              <img src={EV} alt="Profiilipilt" className="profile-img"/>
-            </div>
-
-            <div className="card course-card">
-              <img src={Kursus} alt="Kursus" className="course-img"/>
-            </div>
-          </div>
         </section>
       </main>
     </div>

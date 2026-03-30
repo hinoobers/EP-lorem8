@@ -10,13 +10,32 @@ html {
 
 :root {
   /* colors */
-  --primary-color: #1A2433; /* rgb(26, 36, 51) */
-  --base-color-light: #ffffff;
+  --text-0-color: #ffffff;
+  
+  /* borders and other */
+  --warning-color: #ec221f;
+  --on-hold-color: #db7c00;
+  --accepted-color: #129e05;
+  --unfinished-color: #ada7ff;
+  --border-icon-color: #15326e;
+  --button-select-color: #ff00ff;
+  --light-select-color: #ffffff;
+  --cyan-select-color: #00ffff;
+  
+  /* backgrounds */
+  --background-black-color: #000000;
+  --background-gray-color: #1d1d1d;
+  --background-1-color: #fee9e7;
+  --background-2-color: #fff4e5;
+  --background-3-color: #e8fee6;
+  --background-4-color: #ece8ff;
 
   /* font sizes */
   --text-px-48: 48px;
   --text-px-32: 32px;
-
+  --text-px-24: 24px;
+  --text-px-18: 18px;
+  --text-px-16: 16px;
 }
 
 #root {
