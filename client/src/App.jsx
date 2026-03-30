@@ -13,6 +13,7 @@ import HomePageDark from './pages/HomePage/HomePageDark'
 import PassPersonalInfo from './pages/Pass/PassPersonalInfo/PassPersonalInfo'
 import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
+import KogemuseLisamisPage from './pages/KogemuseLisamisPage/KogemuseLisamisPage'
 
 function App() {
   const [showTerms, setShowTerms] = useState(false) 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/home_dark" element={<HomePageDark/>}/>
         <Route path='/pass' element={<PassPersonalInfo />} />
         <Route path='/support' element={<SupportPage />} />
+        <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
       </Routes>
 
       <Footer />

@@ -1,121 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from '../../assets/dark/Sidebar.svg';
-import Check_circle from '../../assets/dark/Check_circle.svg';
-import File_text from '../../assets/dark/File_text.svg';
-import Oskused from '../../assets/dark/Box.svg';
-import Archive from '../../assets/dark/Archive.svg';
-import Settings from '../../assets/dark/Settings.svg';
-import Headphones from '../../assets/dark/Headphones.svg';
+import SidebarComponent from '../../components/sidebar/Sidebar';
 import Mail from '../../assets/dark/Mail.svg';
 import Bell from '../../assets/dark/Bell.svg';
 import Edit from '../../assets/dark/Edit.svg';
 import Share1 from '../../assets/dark/Share.svg';
 import Share from '../../assets/Share.webp';
+import Oskused from '../../assets/dark/Box.svg';
 import Plus from '../../assets/dark/Plus.svg';
 import Search from '../../assets/dark/Search.svg';
-import Sun from '../../assets/dark/Sun.svg';
-import Moon from '../../assets/dark/Moon.svg';
 import ArrowRight from '../../assets/dark/Arrow right.svg';
 import Briefcase from '../../assets/dark/Bar chart-2.svg';
 import Bookmark from '../../assets/dark/Book.svg';
-import ChevronRight from '../../assets/dark/Chevron right.svg';
 import Package from '../../assets/dark/Package.svg';
 import './HomePageDark.css';
 
 function HomePageDark() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const navigate = useNavigate();
 
   return (
-    <div
-      className={`home-page ${
-        isSidebarOpen ? 'home-page--sidebar-open' : 'home-page--sidebar-closed'
-      }`}
-    >
+    <div className="home-page">
       <div className="home-layout">
-        {isSidebarOpen && (
-          <aside className="home-sidebar">
-            <div className="home-sidebar-header">
-              <div className="home-logo-row">
-                <div className="home-logo">Ettevõtlikkuse Pass</div>
-                <button
-                  type="button"
-                  className="home-sidebar-toggle"
-                  onClick={() => setIsSidebarOpen(false)}
-                  aria-label="Sulge külgriba"
-                >
-                  <img src={Sidebar} alt="" />
-                </button>
-              </div>
-            </div>
+        <SidebarComponent activeNav="dashboard" />
 
-            <div className="home-sidebar-section-label">Ülevaade</div>
 
-            <nav className="home-nav" aria-label="Põhinavigatsioon">
-              <button type="button" className="home-nav-item home-nav-item--active">
-                <img src={Check_circle} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Töölaud</span>
-              </button>
-              <button type="button" className="home-nav-item">
-                <img src={File_text} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Pass</span>
-              </button>
-              <button type="button" className="home-nav-item">
-                <img src={Archive} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Kogemused</span>
-              </button>
-            </nav>
-
-            <div className="home-sidebar-spacer" />
-
-            <div className="home-sidebar-bottom">
-              <button type="button" className="home-sidebar-link">
-                <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-                <span>Settings</span>
-              </button>
-              <button type="button" className="home-sidebar-link" onClick={() => navigate('/support')}>
-                <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-                <span>Support</span>
-              </button>
-
-              <div className="home-user-card">
-                <div className="home-user-avatar" aria-hidden="true" />
-                <div className="home-user-text">
-                  <div className="home-user-name">Karoliine Tamm</div>
-                  <div className="home-user-email">KaroliineT@gmail.com</div>
-                </div>
-                <img src={ChevronRight} alt="" className="home-user-chevron-img" aria-hidden="true" />
-              </div>
-
-              <div className="home-theme-toggle" aria-label="Välimuse valik">
-                <button type="button" className="home-theme-pill home-theme-pill--active">
-                  <span className="home-theme-icon" aria-hidden="true">
-                    <img src={Sun} alt="" />
-                  </span>
-                  <span>Light</span>
-                </button>
-                <button type="button" className="home-theme-pill home-theme-pill--muted">
-                  <span className="home-theme-icon" aria-hidden="true">
-                    <img src={Moon} alt="" />
-                  </span>
-                  <span>Dark</span>
-                </button>
-              </div>
-            </div>
-          </aside>
-        )}
-
-        {!isSidebarOpen && (
-          <button
-            type="button"
-            className="home-sidebar-toggle-floating"
-            onClick={() => setIsSidebarOpen(true)}
-            aria-label="Ava külgriba"
-          >
-            <img src={Sidebar} alt="" />
-          </button>
-        )}
 
         <main className="home-main">
           <header className="home-header">
