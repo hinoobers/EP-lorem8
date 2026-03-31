@@ -16,7 +16,7 @@ function LoginPage({ onShowTerms }) {
     console.log('Login submitted', { email, password, agreeToTerms, rememberMe });
     // For now, treat any non-empty credentials as a successful mock login
     if (email && password && agreeToTerms) {
-      navigate('/home');
+      navigate('/home_dark');
     }
   };
 

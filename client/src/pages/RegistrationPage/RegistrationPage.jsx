@@ -62,7 +62,7 @@ function RegistrationPage({ onShowTerms }) {
           <button
             className="close-button"
             aria-label="Close"
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/login')}
           >
             ✕
           </button>

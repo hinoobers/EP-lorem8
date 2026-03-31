@@ -14,7 +14,7 @@ import EditIcon from '../../../assets/dark/Edit.svg';
 import ShareIcon from '../../../assets/dark/Share.svg';
 import PlusIcon from '../../../assets/dark/Plus.svg';
 import Search from '../../../assets/dark/Search.svg';
-import ChevronRight from '../../../assets/dark/Chevron right.svg';
+import ChevronRight from '../../../assets/dark/Arrow right_dark.svg';
 import '../../HomePage/HomePageDark.css';
 import './PassPersonalInfo.css';
 
