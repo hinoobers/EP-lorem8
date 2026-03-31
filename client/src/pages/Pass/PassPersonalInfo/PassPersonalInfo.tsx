@@ -76,7 +76,7 @@ const PassPersonalInfo: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = (goForward?: boolean) => {
     setPreviewData((prev) => ({
       ...prev,
       ...Object.fromEntries(
@@ -85,6 +85,10 @@ const PassPersonalInfo: React.FC = () => {
     }));
 
     setCurrentStep((prev) => Math.min(prev + 1, 3));
+
+    if (goForward) {
+      navigate('/pass/work-experience');
+    }
   };
 
   return (
@@ -293,7 +297,7 @@ const PassPersonalInfo: React.FC = () => {
                         name="birthDate"
                         type="text"
                         className="pass-field-input"
-                        placeholder="00.00.0000"
+                        placeholder="dd.mm.yyyy"
                         value={formData.birthDate}
                         onChange={handleChange}
                       />
@@ -419,7 +423,7 @@ const PassPersonalInfo: React.FC = () => {
                   <button
                     type="button"
                     className="pass-save-button"
-                    onClick={handleSave}
+                    onClick={() => handleSave(true)}
                   >
                     Salvesta
                   </button>
@@ -428,7 +432,7 @@ const PassPersonalInfo: React.FC = () => {
                     type="button"
                     className="pass-nav-pill"
                     aria-label="Salvesta ja liigu edasi"
-                    onClick={handleSave}
+                    onClick={() => handleSave(true)}
                   >
                     <img src={ChevronRight} alt="" aria-hidden="true" />
                   </button>
