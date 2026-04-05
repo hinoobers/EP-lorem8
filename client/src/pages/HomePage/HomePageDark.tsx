@@ -52,7 +52,7 @@ function HomePageDark() {
           <div className="home-header-divider" />
 
           <div className="home-actions-bar" aria-label="Kiirtoimingud">
-            <button type="button" className="home-action-btn">
+            <button type="button" className="home-action-btn" onClick={() => navigate('/kogemuse-lisamine')}>
               <span>Lisa kogemus</span>
               <img src={Plus} alt="" className="home-action-icon" aria-hidden="true" />
             </button>

@@ -1,0 +1,25 @@
+@import '../PassPersonalInfo/PassPersonalInfo.css';
+
+.pass-skill-page .pass-form-required-label {
+  color: #fee9e7;
+}
+
+.pass-skill-duration {
+  max-width: 155px; /* Adjusting bit wider just in case for translation */
+  align-self: start;
+}
+
+.pass-skill-block + .pass-skill-block {
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pass-add-skill {
+  margin-top: 24px;
+}
+
+/* Margin helper class if needed */
+.mt-4 {
+  margin-top: 24px;
+}

@@ -50,8 +50,11 @@ const PassEducationInfo: React.FC = () => {
     }));
   };
 
-  const handleSave = () => {
+  const handleSave = (goForward?: boolean) => {
     console.log('Save education form', formData);
+    if (goForward) {
+      navigate('/pass/skills');
+    }
   };
 
   const handleCertificateUploadClick = () => {
@@ -342,7 +345,7 @@ const PassEducationInfo: React.FC = () => {
                   <button
                     type="button"
                     className="pass-save-button"
-                    onClick={handleSave}
+                    onClick={() => handleSave(true)}
                   >
                     Salvesta
                   </button>
@@ -351,7 +354,7 @@ const PassEducationInfo: React.FC = () => {
                     type="button"
                     className="pass-nav-pill"
                     aria-label="Salvesta ja liigu edasi"
-                    onClick={handleSave}
+                    onClick={() => handleSave(true)}
                   >
                     <img src={ChevronRight} alt="" aria-hidden="true" />
                   </button>

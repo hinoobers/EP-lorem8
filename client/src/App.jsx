@@ -13,6 +13,7 @@ import HomePageDark from './pages/HomePage/HomePageDark'
 import PassPersonalInfo from './pages/Pass/PassPersonalInfo/PassPersonalInfo'
 import PassWorkExperience from './pages/Pass/PassWorkExperience/PassWorkExperience'
 import PassEducationInfo from './pages/Pass/PassEducationInfo/PassEducationInfo'
+import PassSkillInfo from './pages/Pass/PassSkillInfo/PassSkillInfo'
 import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
 import KogemuseLisamisPage from './pages/KogemuseLisamisPage/KogemuseLisamisPage'
@@ -36,6 +37,7 @@ function App() {
         <Route path='/pass' element={<PassPersonalInfo />} />
         <Route path='/pass/work-experience' element={<PassWorkExperience />} />
         <Route path='/pass/education' element={<PassEducationInfo />} />
+        <Route path='/pass/skills' element={<PassSkillInfo />} />
         <Route path='/support' element={<SupportPage />} />
         <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
       </Routes>
