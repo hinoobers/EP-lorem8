@@ -88,7 +88,7 @@ const PassSkillInfo: React.FC = () => {
         // Navigate forward to final UI as required
         // Can merge into previewData here if wanted for completeness, but not strictly needed for skills in v1
         if (goForward) {
-            navigate('/home_dark');
+            navigate('/pass/end');
         }
     };
 
