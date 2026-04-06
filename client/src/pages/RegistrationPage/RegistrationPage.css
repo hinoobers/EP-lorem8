@@ -1,0 +1,197 @@
+.registration-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+.registration-modal {
+  background: var(--background-gray-color);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 32px 40px 56px;
+  width: 100%;
+  max-width: 770px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: var(--text-0-color);
+  border-bottom: 0.5px solid var(--light-select-color);
+  padding-bottom: 10px;
+}
+
+.registration-modal .close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-0-color);
+}
+
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.registration-form .form-row {
+  display: flex;
+  gap: 60px;
+  margin-bottom: 5px;
+}
+
+.registration-form .form-group {
+  flex: 1;
+}
+
+.registration-form label {
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-0-color);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.registration-form input:focus {
+  outline: none;
+  border-color: #8b5cf6;
+}
+
+.registration-form input::placeholder,
+.registration-form .form-group input[type="email"]::placeholder,
+.registration-form .form-group input[type="password"]::placeholder,
+.registration-form .form-group input[type="text"]::placeholder,
+.registration-form .form-group input[type="date"]::placeholder {
+  color: var(--text-0-color);
+  opacity: 1;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.checkbox-group {
+  margin-top: 8px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.checkbox-label input[type='checkbox'] {
+  width: 22px;
+  height: 22px;
+  margin-top: -2px;
+  margin-right: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.checkbox-label input[type="checkbox"],
+.checkbox-label input[type="checkbox"] {
+  accent-color: #a98aec;
+}
+
+.checkbox-text {
+  color: var(--text-0-color);
+  flex: 1;
+  font-size: 14px;
+}
+
+.checkbox-text a {
+  font-size: 14px;
+  color: var(--text-1-color);
+  text-decoration: none;
+}
+
+.registration-submit {
+  width: 155px;
+  height: 48px;
+  margin: 24px auto 0;
+  display: block;
+  background: var(--background-gray-color);
+  color: var(--text-0-color);
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+}
+
+.registration-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 1px;
+  background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+.google-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.google-button-image {
+  width: 74px;
+  height: 74px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+@media (max-width: 840px) {
+  .registration-modal {
+    padding: 24px;
+    height: auto;
+  }
+
+  .registration-form .form-row {
+    flex-direction: column;
+  }
+
+  .registration-submit {
+    width: 100%;
+  }
+}

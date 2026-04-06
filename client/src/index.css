@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../src/fonts/ClashDisplay-Bold.woff2') format('woff2'),
+       url('../src/fonts/ClashDisplay-Bold.woff') format('woff');
+  font-weight: 200 900; /* Use range for variable fonts */
+  font-display: swap;
+}
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #ffffff;
+  color: #0f1720;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
