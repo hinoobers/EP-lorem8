@@ -46,4 +46,6 @@ app.get('/auth/google/callback',
   }
 );
 
-module.exports = app;
+app.listen(process.env.PORT, () => {
+  console.log("Server running!");
+});
