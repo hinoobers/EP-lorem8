@@ -206,7 +206,7 @@ function RegistrationPage({ onShowTerms }) {
               />
               <span className="checkbox-text">Mäleta mind 30 päeva</span>
             </label>
-          </div> disabled={loading}>
+          </div>
             {loading ? 'Kontot loome...' : 'Loo konto'}
           <button type="submit" className="registration-submit">
             Loo konto
