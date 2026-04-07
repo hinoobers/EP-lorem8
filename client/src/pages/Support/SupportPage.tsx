@@ -127,7 +127,7 @@ const SupportPage: React.FC = () => {
           <div className="support-panel">
             {/* Panel header */}
             <div className="support-panel-header">
-              <span className="support-panel-title">Support</span>
+              <span className="support-panel-title">Kasutajatugi</span>
               <div className="support-header-divider" />
             </div>
 
