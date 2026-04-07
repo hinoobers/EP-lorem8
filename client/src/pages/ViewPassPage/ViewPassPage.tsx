@@ -16,6 +16,7 @@ interface PassData {
     firstName: string;
     lastName: string;
     email: string;
+    pilt: string;
   };
   workExperience: any[];
   educationInfo: any[];
@@ -106,7 +107,9 @@ const ViewPassPage: React.FC = () => {
           {/* User Info Section */}
           <section className="view-pass-info-section">
             <div className="view-pass-user-card">
-              <div className="view-pass-user-avatar" aria-hidden="true" />
+              <div className="view-pass-user-avatar" aria-hidden="true" >
+                <img src={pass.pilt}/>
+              </div>
               <div className="view-pass-user-details">
                 <h2 className="view-pass-user-name">{pass.name}</h2>
                 <p className="view-pass-user-email">{pass.email}</p>
