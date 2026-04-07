@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
+import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -50,40 +52,13 @@ const defaultPreview: PassFormData = {
 
 const PassPersonalInfo: React.FC = () => {
   const navigate = useNavigate();
+  const { user, loading, error } = useUser();
+  const { formData, updatePersonalInfo } = usePassContext();
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<PassFormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    birthDate: '',
-    gender: '',
-    country: '',
-    city: '',
-    language: '',
-    languageLevel: '',
-    tagline: '',
-  });
-  const [previewData, setPreviewData] = useState<PassFormData>(defaultPreview);
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-  ) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
 
   const handleSave = (goForward?: boolean) => {
-    setPreviewData((prev) => ({
-      ...prev,
-      ...Object.fromEntries(
-        Object.entries(formData).map(([key, value]) => [key, value || (prev as any)[key]]),
-      ),
-    }));
-
+    // Personal info comes from the user table, so we don't store it in the pass context
+    // Just proceed to the next step
     setCurrentStep((prev) => Math.min(prev + 1, 3));
 
     if (goForward) {
@@ -91,42 +66,69 @@ const PassPersonalInfo: React.FC = () => {
     }
   };
 
+  const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
+  const userEmail = user?.email || '';
+
+  // Create previewData from user info and formData
+  const previewData = {
+    firstName: user?.displayName?.split(' ')[0] || formData.firstName || '',
+    lastName: user?.displayName?.split(' ').slice(1).join(' ') || formData.lastName || '',
+    email: userEmail || formData.email || '',
+    phone: user?.phone || formData.phone || '',
+    birthDate: formData.birthDate || '',
+    gender: formData.gender || '',
+    country: formData.country || '',
+    city: formData.city || '',
+    language: formData.language || '',
+    languageLevel: formData.languageLevel || '',
+    tagline: formData.tagline || ''
+  };
+
   return (
     <div className="home-page">
       <div className="home-layout pass-layout">
-        <SidebarComponent activeNav="pass" />
+        <SidebarComponent 
+          activeNav="pass" 
+          userName={displayName}
+          userEmail={userEmail}
+          userPicture={user?.pilt}
+        />
 
         <main className="home-main pass-main">
-          <header className="home-header">
-            <div className="home-header-name">Karoliine Tamm</div>
+          <div className="pass-header-group">
+            <header className="home-header">
+              <div className="home-header-name">{displayName}</div>
 
-            <div className="home-search" role="search">
-            <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
-              <input
-                type="search"
-                className="home-search-input"
-                placeholder="Otsi"
-                aria-label="Otsi"
-              />
-            </div>
+              <div className="home-search" role="search">
+              <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
+                <input
+                  type="search"
+                  className="home-search-input"
+                  placeholder="Otsi"
+                  aria-label="Otsi"
+                />
+              </div>
 
-            <div className="home-header-icons">
-              <button
-                type="button"
-                className="home-icon-button"
-                aria-label="Ava postkast"
-              >
-                <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className="home-icon-button"
-                aria-label="Teavitused"
-              >
-                <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
-              </button>
-            </div>
-          </header>
+              <div className="home-header-icons">
+                <button
+                  type="button"
+                  className="home-icon-button"
+                  aria-label="Ava postkast"
+                >
+                  <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className="home-icon-button"
+                  aria-label="Teavitused"
+                >
+                  <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
+                </button>
+              </div>
+            </header>
+
+            <div className="home-header-divider" />
+          </div>
 
           <button
             type="button"
@@ -237,11 +239,11 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="firstName"
-                        name="firstName"
                         type="text"
                         className="pass-field-input"
-                        value={formData.firstName}
-                        onChange={handleChange}
+                        value={user?.displayName?.split(' ')[0] || ''}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -251,11 +253,11 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="lastName"
-                        name="lastName"
                         type="text"
                         className="pass-field-input"
-                        value={formData.lastName}
-                        onChange={handleChange}
+                        value={user?.displayName?.split(' ').slice(1).join(' ') || ''}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -265,11 +267,11 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="email"
-                        name="email"
                         type="email"
                         className="pass-field-input"
-                        value={formData.email}
-                        onChange={handleChange}
+                        value={user?.email || ''}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -279,12 +281,12 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="phone"
-                        name="phone"
                         type="tel"
                         className="pass-field-input"
                         placeholder="+372"
-                        value={formData.phone}
-                        onChange={handleChange}
+                        value={user?.phone || ''}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -294,12 +296,12 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="birthDate"
-                        name="birthDate"
                         type="text"
                         className="pass-field-input"
                         placeholder="dd.mm.yyyy"
                         value={formData.birthDate}
-                        onChange={handleChange}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -309,10 +311,9 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <select
                         id="gender"
-                        name="gender"
                         className="pass-field-input pass-select"
                         value={formData.gender}
-                        onChange={handleChange}
+                        disabled
                       >
                         <option value="">Vali</option>
                         <option value="Naine">Naine</option>
@@ -327,11 +328,11 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="country"
-                        name="country"
                         type="text"
                         className="pass-field-input"
                         value={formData.country}
-                        onChange={handleChange}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -341,11 +342,11 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <input
                         id="city"
-                        name="city"
                         type="text"
                         className="pass-field-input"
                         value={formData.city}
-                        onChange={handleChange}
+                        disabled
+                        readOnly
                       />
                     </div>
 
@@ -355,10 +356,9 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <select
                         id="language"
-                        name="language"
                         className="pass-field-input pass-select"
                         value={formData.language}
-                        onChange={handleChange}
+                        disabled
                       >
                         <option value="">Vali</option>
                         <option value="eesti keel">Eesti keel</option>
@@ -381,10 +381,9 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <select
                         id="languageLevel"
-                        name="languageLevel"
                         className="pass-field-input pass-select"
                         value={formData.languageLevel}
-                        onChange={handleChange}
+                        disabled
                       >
                         <option value="">Vali</option>
                         <option value="emakeel">Emakeel</option>
@@ -400,10 +399,10 @@ const PassPersonalInfo: React.FC = () => {
                       </label>
                       <textarea
                         id="tagline"
-                        name="tagline"
                         className="pass-field-input pass-field-textarea"
                         value={formData.tagline}
-                        onChange={handleChange}
+                        disabled
+                        readOnly
                         rows={3}
                       />
                     </div>

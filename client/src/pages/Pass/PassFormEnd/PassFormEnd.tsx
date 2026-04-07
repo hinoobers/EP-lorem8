@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
+import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -14,32 +16,66 @@ import '../../HomePage/HomePageDark.css';
 import '../PassPersonalInfo/PassPersonalInfo.css';
 import './PassFormEnd.css';
 
-const defaultPreview = {
-    firstName: 'Karoliine',
-    lastName: 'Tamm',
-    email: 'karoliine@example.com',
-    phone: '+372 5555 5555',
-    birthDate: '01.01.2006',
-    gender: 'Naine',
-    country: 'Eesti',
-    city: 'Tartu',
-    language: 'eesti keel',
-    languageLevel: 'emakeel',
-    tagline: 'Ettevõtlik ja loov õppija',
-};
-
 const PassFormEnd: React.FC = () => {
     const navigate = useNavigate();
-    const [previewData] = useState(defaultPreview);
+    const { user, loading, error } = useUser();
+    const { formData, resetForm, getFormData } = usePassContext();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                throw new Error('No authentication token found');
+            }
+
+            const passData = getFormData();
+
+            const response = await fetch('https://evpass.pnglin.byenoob.com/api/add-pass', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    workExperience: passData.workExperience,
+                    educationInfo: passData.educationInfo,
+                    skills: passData.skills
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit pass');
+            }
+
+            const data = await response.json();
+            resetForm();
+            navigate('/pass');
+        } catch (error) {
+            console.error('Error submitting pass:', error);
+            setSubmitError(error instanceof Error ? error.message : 'An error occurred while submitting the pass');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     return (
         <div className="home-page pass-form-end-page">
             <div className="home-layout pass-layout">
-                <SidebarComponent activeNav="pass" />
+                <SidebarComponent 
+                  activeNav="pass" 
+                  userName={user ? `${user.displayName || ''}` : 'Kasutaja'}
+                  userEmail={user?.email || ''}
+                  userPicture={user?.pilt}
+                />
 
                 <main className="home-main pass-main">
                     <header className="home-header">
-                        <div className="home-header-name">Karoliine Tamm</div>
+                        <div className="home-header-name">{user ? `${user.displayName || ''}` : 'Kasutaja'}</div>
 
                         <div className="home-search" role="search">
                             <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
@@ -101,21 +137,28 @@ const PassFormEnd: React.FC = () => {
 
                                     <p className="pass-form-end-text">Kas soovid suunduda kogemusi lisama?</p>
 
+                                    {submitError && <p style={{ color: '#ff4558', marginBottom: '16px' }}>{submitError}</p>}
+
                                     <div className="pass-form-end-actions">
                                         <button
                                             type="button"
                                             className="pass-form-end-btn-outline"
-                                            onClick={() => navigate('/home_dark')}
+                                            onClick={handleSubmit}
+                                            disabled={isSubmitting}
                                         >
-                                            Ei soovi
+                                            {isSubmitting ? 'Salvestamine...' : 'Salvesta pass'}
                                         </button>
 
                                         <button
                                             type="button"
                                             className="pass-form-end-btn-primary"
-                                            onClick={() => navigate('/kogemuse-lisamine')}
+                                            onClick={async () => {
+                                                await handleSubmit();
+                                                navigate('/kogemuse-lisamine');
+                                            }}
+                                            disabled={isSubmitting}
                                         >
-                                            Soovin
+                                            {isSubmitting ? 'Salvestamine...' : 'Salvesta ja lisa kogemus'}
                                         </button>
                                     </div>
                                 </div>
@@ -135,15 +178,11 @@ const PassFormEnd: React.FC = () => {
                                     <div className="pass-preview-info-col">
                                         <div className="pass-preview-name-block">
                                             <div className="pass-preview-name">
-                                                {previewData.firstName || defaultPreview.firstName}{' '}
-                                                {previewData.lastName || defaultPreview.lastName}
+                                                {user?.displayName || 'Kasutaja'}
                                             </div>
                                             <div className="pass-preview-chips-row">
                                                 <span className="pass-preview-chip-ghost">
-                                                    {previewData.city || defaultPreview.city}
-                                                </span>
-                                                <span className="pass-preview-chip-ghost">
-                                                    {previewData.birthDate ? previewData.birthDate.split('.')[2] : '2006'}
+                                                    Estonia
                                                 </span>
                                             </div>
                                         </div>
@@ -153,15 +192,11 @@ const PassFormEnd: React.FC = () => {
                                             <ul className="pass-preview-list">
                                                 <li>
                                                     <span className="pass-preview-bullet" />
-                                                    <span>{previewData.phone || defaultPreview.phone}</span>
+                                                    <span>{user?.email || 'Email'}</span>
                                                 </li>
                                                 <li>
                                                     <span className="pass-preview-bullet" />
-                                                    <span>{previewData.email || defaultPreview.email}</span>
-                                                </li>
-                                                <li>
-                                                    <span className="pass-preview-bullet" />
-                                                    <span>{previewData.city || defaultPreview.city}</span>
+                                                    <span>{user?.email || 'Email'}</span>
                                                 </li>
                                             </ul>
                                         </div>

@@ -2,6 +2,8 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
+import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -29,29 +31,24 @@ type EducationFormData = {
 
 const PassEducationInfo: React.FC = () => {
   const navigate = useNavigate();
+  const { user, loading, error } = useUser();
+  const { formData, updateEducationInfo } = usePassContext();
   const certificateInputRef = useRef<HTMLInputElement>(null);
   const [currentStep] = useState(2);
-  const [formData, setFormData] = useState<EducationFormData>({
-    institutionName: '',
-    level: '',
-    curriculum: '',
-    startYear: '',
-    endYear: '',
-    courses: '',
-  });
+  const [localFormData, setLocalFormData] = useState<EducationFormData>(formData.educationInfo as any);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
+    setLocalFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleSave = (goForward?: boolean) => {
-    console.log('Save education form', formData);
+    updateEducationInfo(localFormData as any);
     if (goForward) {
       navigate('/pass/skills');
     }
@@ -69,42 +66,54 @@ const PassEducationInfo: React.FC = () => {
     }
   };
 
+  const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
+  const userEmail = user?.email || '';
+
   return (
-    <div className="home-page">
+    <div className="home-page pass-page">
       <div className="home-layout pass-layout">
-        <SidebarComponent activeNav="pass" />
+        <SidebarComponent 
+          activeNav="pass" 
+          userName={displayName}
+          userEmail={userEmail}
+          userPicture={user?.pilt}
+        />
 
         <main className="home-main pass-main">
-          <header className="home-header">
-            <div className="home-header-name">Karoliine Tamm</div>
+          <div className="pass-header-group">
+            <header className="home-header">
+              <div className="home-header-name">{displayName}</div>
 
-            <div className="home-search" role="search">
-              <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
-              <input
-                type="search"
-                className="home-search-input"
-                placeholder="Otsi"
-                aria-label="Otsi"
-              />
-            </div>
+              <div className="home-search" role="search">
+                <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
+                <input
+                  type="search"
+                  className="home-search-input"
+                  placeholder="Otsi"
+                  aria-label="Otsi"
+                />
+              </div>
 
-            <div className="home-header-icons">
-              <button
-                type="button"
-                className="home-icon-button"
-                aria-label="Ava postkast"
-              >
-                <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
-              </button>
-              <button
-                type="button"
-                className="home-icon-button"
-                aria-label="Teavitused"
-              >
-                <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
-              </button>
-            </div>
-          </header>
+              <div className="home-header-icons">
+                <button
+                  type="button"
+                  className="home-icon-button"
+                  aria-label="Ava postkast"
+                >
+                  <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  className="home-icon-button"
+                  aria-label="Teavitused"
+                >
+                  <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
+                </button>
+              </div>
+            </header>
+
+            <div className="home-header-divider" />
+          </div>
 
           <button
             type="button"

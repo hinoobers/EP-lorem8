@@ -1,16 +1,12 @@
 // @ts-nocheck
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SidebarComponent from '../../components/sidebar/Sidebar';
+import { useUser } from '../../hooks/useUser';
 
-import SidebarIcon from '../../assets/dark/Sidebar.svg';
 import CheckCircle from '../../assets/dark/Check_circle.svg';
 import FileText from '../../assets/dark/File_text.svg';
 import Archive from '../../assets/dark/Archive.svg';
-import Settings from '../../assets/dark/Settings.svg';
-import Headphones from '../../assets/dark/Headphones.svg';
-import Sun from '../../assets/dark/Sun.svg';
-import Moon from '../../assets/dark/Moon.svg';
-import ChevronRight from '../../assets/dark/Chevron right.svg';
 
 // Support-specific icons from assets/dark/support/
 import MailIcon from '../../assets/dark/support/Mail.svg';
@@ -30,7 +26,6 @@ import Edit4Icon from '../../assets/dark/support/Edit 4.svg';
 import PlusIcon from '../../assets/dark/support/Plus.svg';
 import EditIcon3 from '../../assets/dark/support/Edit 3.svg';
 
-import '../HomePage/HomePageDark.css';
 import './SupportPage.css';
 
 type FaqItem = {
@@ -102,119 +97,31 @@ const shortcuts = [
 
 const SupportPage: React.FC = () => {
   const navigate = useNavigate();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { user } = useUser();
+  const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
+  const userEmail = user?.email || '';
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   const toggleFaq = (index: number) => {
     setOpenFaq((prev) => (prev === index ? null : index));
   };
 
   return (
-    <div
-      className={`home-page ${
-        isSidebarOpen ? 'home-page--sidebar-open' : 'home-page--sidebar-closed'
-      }`}
-    >
+    <div className="home-page home-page--sidebar-open">
       <div className="home-layout">
-        {isSidebarOpen && (
-          <aside className="home-sidebar">
-            <div className="home-sidebar-header">
-              <div className="home-logo-row">
-                <div className="home-logo">Ettevõtlikkuse Pass</div>
-                <button
-                  type="button"
-                  className="home-sidebar-toggle"
-                  onClick={() => setIsSidebarOpen(false)}
-                  aria-label="Sulge külgriba"
-                >
-                  <img src={SidebarIcon} alt="" />
-                </button>
-              </div>
-            </div>
-
-            <div className="home-sidebar-section-label">Ülevaade</div>
-
-            <nav className="home-nav" aria-label="Põhinavigatsioon">
-              <button
-                type="button"
-                className="home-nav-item"
-                onClick={() => navigate('/home_dark')}
-              >
-                <img src={CheckCircle} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Töölaud</span>
-              </button>
-              <button type="button" className="home-nav-item" onClick={() => navigate('/pass')}>
-                <img src={FileText} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Pass</span>
-              </button>
-              <button type="button" className="home-nav-item">
-                <img src={Archive} alt="" className="home-nav-icon-img" aria-hidden="true" />
-                <span className="home-nav-label">Kogemused</span>
-              </button>
-            </nav>
-
-            <div className="home-sidebar-spacer" />
-
-            <div className="home-sidebar-bottom">
-              <button type="button" className="home-sidebar-link support-sidebar-link">
-                <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-                <span>Settings</span>
-              </button>
-              <button
-                type="button"
-                className="home-sidebar-link support-sidebar-link home-sidebar-link--active"
-                onClick={() => navigate('/support')}
-              >
-                <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-                <span>Support</span>
-              </button>
-
-              <div className="home-user-card">
-                <div className="home-user-avatar" aria-hidden="true" />
-                <div className="home-user-text">
-                  <div className="home-user-name">Karoliine Tamm</div>
-                  <div className="home-user-email">KaroliineT@gmail.com</div>
-                </div>
-                <img
-                  src={ChevronRight}
-                  alt=""
-                  className="home-user-chevron-img"
-                  aria-hidden="true"
-                />
-              </div>
-
-              <div className="home-theme-toggle" aria-label="Välimuse valik">
-                <button type="button" className="home-theme-pill home-theme-pill--active">
-                  <span className="home-theme-icon" aria-hidden="true">
-                    <img src={Sun} alt="" />
-                  </span>
-                  <span>Light</span>
-                </button>
-                <button
-                  type="button"
-                  className="home-theme-pill home-theme-pill--muted"
-                  onClick={() => navigate('/home_dark')}
-                >
-                  <span className="home-theme-icon" aria-hidden="true">
-                    <img src={Moon} alt="" />
-                  </span>
-                  <span>Dark</span>
-                </button>
-              </div>
-            </div>
-          </aside>
-        )}
-
-        {!isSidebarOpen && (
-          <button
-            type="button"
-            className="home-sidebar-toggle-floating"
-            onClick={() => setIsSidebarOpen(true)}
-            aria-label="Ava külgriba"
-          >
-            <img src={SidebarIcon} alt="" />
-          </button>
-        )}
+        <SidebarComponent
+          activeNav="support"
+          userName={displayName}
+          userEmail={userEmail}
+          userPicture={user?.pilt}
+        />
 
         <main className="home-main support-main">
           <div className="support-panel">

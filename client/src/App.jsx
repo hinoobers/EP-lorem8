@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import React from 'react'
 // import reactLogo from './assets/react.svg'
 import './App.css'
-import { useState } from 'react' 
+import { useState, useEffect } from 'react'
+import { PassProvider } from './context/PassContext'
 
 import LandingPage from './pages/LandingPage/LandingPage'
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -18,16 +19,35 @@ import PassFormEnd from './pages/Pass/PassFormEnd/PassFormEnd'
 import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
 import KogemuseLisamisPage from './pages/KogemuseLisamisPage/KogemuseLisamisPage'
+import KogemustePage from './pages/Kogemused/KogemustePage'
+import KogemuseLisatudPage from './pages/KogemuseLisatudPage/KogemuseLisatudPage'
+import PassFrontPage from './pages/Pass/PassFrontPage/PassFrontPage'
+import ViewPassPage from './pages/ViewPassPage/ViewPassPage'
+import EditPassPage from './pages/Pass/EditPassPage/EditPassPage'
 
 function App() {
   const [showTerms, setShowTerms] = useState(false) 
   
+  useEffect(() => {
+    // Extract token from URL query parameter and save it
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    
+    if (token) {
+      // Save token to localStorage
+      localStorage.setItem('authToken', token);
+      
+      // Remove token from URL for cleaner history
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [])
   
   return (
-    <BrowserRouter>
+    <PassProvider>
+      <BrowserRouter>
 
-      {/* routes */}
-      <Routes>
+        {/* routes */}
+        <Routes>
         <Route path='/' element={<LandingPage />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
         <Route path='/login' element={<LoginPage />} />
@@ -35,18 +55,24 @@ function App() {
         <Route path='/register' element={<RegistrationPage />} />
         <Route path='/home' element={<HomePage />} />
         <Route path="/home_dark" element={<HomePageDark/>}/>
-        <Route path='/pass' element={<PassPersonalInfo />} />
+        <Route path='/pass' element={<PassFrontPage />} />
+        <Route path='/pass/:passId/edit' element={<EditPassPage />} />
+        <Route path='/view-pass/:passId' element={<ViewPassPage />} />
+        <Route path='/pass-create' element={<PassPersonalInfo />} />
         <Route path='/pass/work-experience' element={<PassWorkExperience />} />
         <Route path='/pass/education' element={<PassEducationInfo />} />
         <Route path='/pass/skills' element={<PassSkillInfo />} />
         <Route path='/pass/end' element={<PassFormEnd />} />
         <Route path='/support' element={<SupportPage />} />
+        <Route path="/kogemused" element={<KogemustePage  />} />
         <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
+        <Route path="/kogemus-lisatud/:experienceId" element={<KogemuseLisatudPage />} />
       </Routes>
 
       <Footer />
 
     </BrowserRouter>
+    </PassProvider>
   )
 }
 

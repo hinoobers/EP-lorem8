@@ -13,31 +13,64 @@ function RegistrationPage({ onShowTerms }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
 
     if (!agreeToTerms) {
-      alert('Palun nõustu kasutustingimustega.');
+      setError('Palun nõustu kasutustingimustega.');
       return;
     }
 
     if (password !== confirmPassword) {
-      alert('Paroolid ei kattu.');
+      setError('Paroolid ei kattu.');
       return;
     }
 
-    console.log('Registration submitted', {
-      firstName,
-      lastName,
-      email,
-      birthDate,
-      password,
-      rememberMe,
-      agreeToTerms,
-    });
+    setLoading(true);
+
+    try {
+      const response = await fetch('https://evpass.pnglin.byenoob.com/auth/create-account', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          firstName,
+          lastName,
+          sunniaeg: birthDate
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message || 'Konto loomine ebaõnnestus');
+        setLoading(false);
+        return;
+      }
+
+      setSuccess('Konto loodud edukalt! Ümbersuunatakse sisselogimislehele...');
+      setLoading(false);
+      
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    } catch (error) {
+      console.error('Registration error:', error);
+      setError('Serveriga ühenduse viga. Proovi hiljem uuesti.');
+      setLoading(false);
+    }
   };
 
   const handleTermsClick = (e) => {
@@ -69,6 +102,8 @@ function RegistrationPage({ onShowTerms }) {
         </div>
 
         <form className="registration-form" onSubmit={handleSubmit}>
+          {error && <div className="error-message" style={{ color: '#d32f2f', padding: '10px', marginBottom: '15px', backgroundColor: '#ffebee', borderRadius: '4px', fontSize: '14px' }}>{error}</div>}
+          {success && <div className="success-message" style={{ color: '#388e3c', padding: '10px', marginBottom: '15px', backgroundColor: '#e8f5e9', borderRadius: '4px', fontSize: '14px' }}>{success}</div>}
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="firstName">Eesnimi</label>
@@ -171,8 +206,8 @@ function RegistrationPage({ onShowTerms }) {
               />
               <span className="checkbox-text">Mäleta mind 30 päeva</span>
             </label>
-          </div>
-
+          </div> disabled={loading}>
+            {loading ? 'Kontot loome...' : 'Loo konto'}
           <button type="submit" className="registration-submit">
             Loo konto
           </button>
@@ -181,7 +216,7 @@ function RegistrationPage({ onShowTerms }) {
             <span>Loo konto muul viisil</span>
           </div>
 
-          <button type="button" className="google-button">
+          <button type="button" className="google-button" onClick={() => { window.location.href = "https://evpass.pnglin.byenoob.com/auth/google";}}>
             <img
               src={googleLoginButton}
               alt="Loo konto Google'iga"

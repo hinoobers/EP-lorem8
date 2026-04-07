@@ -12,9 +12,10 @@ import ChevronRight from '../../assets/dark/Chevron right.svg';
 import './Sidebar.css';
 
 interface SidebarProps {
-  activeNav?: 'dashboard' | 'pass' | 'experiences';
+  activeNav?: 'dashboard' | 'pass' | 'experiences' | 'support';
   userName?: string;
   userEmail?: string;
+  userPicture?: string;
   onNavigate?: (path: string) => void;
   isSidebarOpen?: boolean;
   setIsSidebarOpen?: (open: boolean) => void;
@@ -24,6 +25,7 @@ function Sidebar({
   activeNav = 'dashboard',
   userName = 'Karoliine Tamm',
   userEmail = 'KaroliineT@gmail.com',
+  userPicture,
   onNavigate,
   isSidebarOpen: propOpen,
   setIsSidebarOpen: propSetOpen,
@@ -33,6 +35,9 @@ function Sidebar({
 
   const isSidebarOpen = propOpen !== undefined ? propOpen : internalOpen;
   const setIsSidebarOpen = propSetOpen || setInternalOpen;
+
+  console.log('Sidebar activeNav:', activeNav);
+  console.log('Is support?', activeNav === 'support');
 
   const handleNavigate = (path: string) => {
     if (onNavigate) {
@@ -93,7 +98,7 @@ function Sidebar({
         <button
           type="button"
           className={`home-nav-item ${activeNav === 'experiences' ? 'home-nav-item--active' : ''}`}
-          onClick={() => handleNavigate('/kogemuse-lisamine')}
+          onClick={() => handleNavigate('/kogemused')}
         >
           <img src={Archive} alt="" className="home-nav-icon-img" aria-hidden="true" />
           <span className="home-nav-label">Kogemused</span>
@@ -107,33 +112,30 @@ function Sidebar({
           <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
           <span>Settings</span>
         </button>
-        <button type="button" className="home-sidebar-link" onClick={() => handleNavigate('/support')}>
+        <button 
+          type="button" 
+          className={`home-sidebar-link ${activeNav === 'support' ? 'home-sidebar-link--active' : ''}`}
+          onClick={() => handleNavigate('/support')}
+        >
           <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
           <span>Support</span>
         </button>
 
         <div className="home-user-card">
-          <div className="home-user-avatar" aria-hidden="true" />
+          <div 
+            className="home-user-avatar" 
+            aria-hidden="true"
+            style={userPicture ? {
+              backgroundImage: `url(${userPicture})` as any,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            } : {}}
+          />
           <div className="home-user-text">
             <div className="home-user-name">{userName}</div>
             <div className="home-user-email">{userEmail}</div>
           </div>
           <img src={ChevronRight} alt="" className="home-user-chevron-img" aria-hidden="true" />
-        </div>
-
-        <div className="home-theme-toggle" aria-label="Välimuse valik">
-          <button type="button" className="home-theme-pill home-theme-pill--active">
-            <span className="home-theme-icon" aria-hidden="true">
-              <img src={Sun} alt="" />
-            </span>
-            <span>Light</span>
-          </button>
-          <button type="button" className="home-theme-pill home-theme-pill--muted">
-            <span className="home-theme-icon" aria-hidden="true">
-              <img src={Moon} alt="" />
-            </span>
-            <span>Dark</span>
-          </button>
         </div>
       </div>
     </aside>
