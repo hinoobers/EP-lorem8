@@ -19,6 +19,7 @@ import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
 import KogemuseLisamisPage from './pages/KogemuseLisamisPage/KogemuseLisamisPage'
 import KogemustePage from './pages/Kogemused/KogemustePage'
+import KogemuseLisatudPage from './pages/KogemuseLisatudPage/KogemuseLisatudPage'
 
 function App() {
   const [showTerms, setShowTerms] = useState(false) 
@@ -57,6 +58,7 @@ function App() {
         <Route path='/support' element={<SupportPage />} />
         <Route path="/kogemused" element={<KogemustePage  />} />
         <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
+        <Route path="/kogemus-lisatud" element={<KogemuseLisatudPage />} />
       </Routes>
 
       <Footer />

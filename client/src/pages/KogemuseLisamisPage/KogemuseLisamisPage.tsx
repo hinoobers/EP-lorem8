@@ -86,7 +86,7 @@ function KogemuseLisamisPage() {
                   </div>
 
                   <div className="kogemus-form-group">
-                    <label className="kogemus-label">Ajakulg*</label>
+                    <label className="kogemus-label">Alguskuupäev*</label>
                     <input
                       type="text"
                       className="kogemus-input"
@@ -95,7 +95,7 @@ function KogemuseLisamisPage() {
                   </div>
 
                   <div className="kogemus-form-group">
-                    <label className="kogemus-label">Lõppkuupäev*</label>
+                    <label className="kogemus-label">Ajakulu*</label>
                     <input
                       type="text"
                       className="kogemus-input"
