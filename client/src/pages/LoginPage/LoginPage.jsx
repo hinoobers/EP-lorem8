@@ -128,7 +128,6 @@ function LoginPage({ onShowTerms }) {
           <button type="button" className="google-button" onClick={() => { window.location.href = "https://evpass.pnglin.byenoob.com/auth/google";}}>
             <img src={googleLoginButton} alt="Logi sisse Google'iga" className="google-button-image" />
           </button>
-              {loading ? 'Logime sisse...' : 'Logi sisse'}
             
           <div className="button-group">
             <button type="submit" className="primary-button">Logi sisse</button>
