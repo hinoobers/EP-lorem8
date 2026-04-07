@@ -15,6 +15,7 @@ interface SidebarProps {
   activeNav?: 'dashboard' | 'pass' | 'experiences';
   userName?: string;
   userEmail?: string;
+  userPicture?: string;
   onNavigate?: (path: string) => void;
   isSidebarOpen?: boolean;
   setIsSidebarOpen?: (open: boolean) => void;
@@ -24,6 +25,7 @@ function Sidebar({
   activeNav = 'dashboard',
   userName = 'Karoliine Tamm',
   userEmail = 'KaroliineT@gmail.com',
+  userPicture,
   onNavigate,
   isSidebarOpen: propOpen,
   setIsSidebarOpen: propSetOpen,
@@ -33,6 +35,8 @@ function Sidebar({
 
   const isSidebarOpen = propOpen !== undefined ? propOpen : internalOpen;
   const setIsSidebarOpen = propSetOpen || setInternalOpen;
+
+  console.log('Sidebar - userPicture prop value:', userPicture);
 
   const handleNavigate = (path: string) => {
     if (onNavigate) {
@@ -93,7 +97,7 @@ function Sidebar({
         <button
           type="button"
           className={`home-nav-item ${activeNav === 'experiences' ? 'home-nav-item--active' : ''}`}
-          onClick={() => handleNavigate('/kogemuse-lisamine')}
+          onClick={() => handleNavigate('/kogemused')}
         >
           <img src={Archive} alt="" className="home-nav-icon-img" aria-hidden="true" />
           <span className="home-nav-label">Kogemused</span>
@@ -113,7 +117,15 @@ function Sidebar({
         </button>
 
         <div className="home-user-card">
-          <div className="home-user-avatar" aria-hidden="true" />
+          <div 
+            className="home-user-avatar" 
+            aria-hidden="true"
+            style={userPicture ? {
+              backgroundImage: `url(${userPicture})` as any,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center'
+            } : {}}
+          />
           <div className="home-user-text">
             <div className="home-user-name">{userName}</div>
             <div className="home-user-email">{userEmail}</div>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
+import { useUser } from '../../../hooks/useUser';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -43,6 +44,7 @@ const defaultPreview = {
 
 const PassSkillInfo: React.FC = () => {
     const navigate = useNavigate();
+    const { user, loading, error } = useUser();
     const [currentStep] = useState(3);
 
     const [skills, setSkills] = useState<SkillData[]>([
@@ -95,39 +97,48 @@ const PassSkillInfo: React.FC = () => {
     return (
         <div className="home-page pass-skill-page">
             <div className="home-layout pass-layout">
-                <SidebarComponent activeNav="pass" />
+                <SidebarComponent 
+                  activeNav="pass" 
+                  userName={user ? `${user.displayName || ''}` : 'Kasutaja'}
+                  userEmail={user?.email || ''}
+                  userPicture={user?.pilt}
+                />
 
                 <main className="home-main pass-main">
-                    <header className="home-header">
-                        <div className="home-header-name">Karoliine Tamm</div>
+                    <div className="pass-header-group">
+                        <header className="home-header">
+                            <div className="home-header-name">{user ? `${user.displayName || ''}` : 'Kasutaja'}</div>
 
-                        <div className="home-search" role="search">
-                            <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
-                            <input
-                                type="search"
-                                className="home-search-input"
-                                placeholder="Otsi"
-                                aria-label="Otsi"
-                            />
-                        </div>
+                            <div className="home-search" role="search">
+                                <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
+                                <input
+                                    type="search"
+                                    className="home-search-input"
+                                    placeholder="Otsi"
+                                    aria-label="Otsi"
+                                />
+                            </div>
 
-                        <div className="home-header-icons">
-                            <button
-                                type="button"
-                                className="home-icon-button"
-                                aria-label="Ava postkast"
-                            >
-                                <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
-                            </button>
-                            <button
-                                type="button"
-                                className="home-icon-button"
-                                aria-label="Teavitused"
-                            >
-                                <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
-                            </button>
-                        </div>
-                    </header>
+                            <div className="home-header-icons">
+                                <button
+                                    type="button"
+                                    className="home-icon-button"
+                                    aria-label="Ava postkast"
+                                >
+                                    <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
+                                </button>
+                                <button
+                                    type="button"
+                                    className="home-icon-button"
+                                    aria-label="Teavitused"
+                                >
+                                    <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
+                                </button>
+                            </div>
+                        </header>
+
+                        <div className="home-header-divider" />
+                    </div>
 
                     <button
                         type="button"

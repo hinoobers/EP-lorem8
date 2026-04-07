@@ -1,41 +1,54 @@
 import React from 'react';
 import SidebarComponent from '../../components/sidebar/Sidebar';
+import { useUser } from '../../hooks/useUser';
 import Search from '../../assets/dark/Search.svg';
 import Mail from '../../assets/dark/Mail.svg';
 import Bell from '../../assets/dark/Bell.svg';
+import '../HomePage/HomePageDark.css';
 import './KogemuseLisamisPage.css';
 
 function KogemuseLisamisPage() {
+  const { user, loading, error } = useUser();
+  const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
+  const userEmail = user?.email || '';
+
+  console.log('KogemuseLisamisPage - userPicture prop:', user?.pilt);
+
   return (
     <div className="kogemus-page">
       <div className="kogemus-layout">
-        <SidebarComponent activeNav="experiences" />
+        <SidebarComponent
+          activeNav="experiences"
+          userName={displayName}
+          userEmail={userEmail}
+          userPicture={user?.pilt}
+        />
 
         <main className="kogemus-main">
-          <header className="kogemus-header">
-            <div className="kogemus-header-name">Karoliine Tamm</div>
+          <header className="home-header">
+            <div className="home-header-name">{displayName}</div>
 
-            <div className="kogemus-search" role="search">
-              <img src={Search} alt="" className="kogemus-search-icon-img" aria-hidden="true" />
+            <div className="home-search" role="search">
+              <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />
               <input
                 type="search"
-                className="kogemus-search-input"
+                className="home-search-input"
                 placeholder="Otsi"
                 aria-label="Otsi"
               />
             </div>
 
-            <div className="kogemus-header-icons">
-              <button type="button" className="kogemus-icon-button" aria-label="Ava postkast">
-                <img src={Mail} alt="" className="kogemus-icon-img" aria-hidden="true" />
+            <div className="home-header-icons">
+              <button type="button" className="home-icon-button" aria-label="Ava postkast">
+                <img src={Mail} alt="" className="home-icon-img" aria-hidden="true" />
               </button>
-              <button type="button" className="kogemus-icon-button" aria-label="Teavitused">
-                <img src={Bell} alt="" className="kogemus-icon-img" aria-hidden="true" />
+              <button type="button" className="home-icon-button" aria-label="Teavitused">
+                <img src={Bell} alt="" className="home-icon-img" aria-hidden="true" />
               </button>
             </div>
           </header>
 
-          <div className="kogemus-header-divider" />
+          <div className="home-header-divider" />
 
           <div className="kogemus-content">
             <div className="kogemus-form-container">

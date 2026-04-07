@@ -13,21 +13,31 @@ import ArrowRight from '../../assets/dark/Arrow right.svg';
 import Briefcase from '../../assets/dark/Bar chart-2.svg';
 import Bookmark from '../../assets/dark/Book.svg';
 import Package from '../../assets/dark/Package.svg';
+import { useUser } from '../../hooks/useUser';
 import './HomePageDark.css';
 
 function HomePageDark() {
   const navigate = useNavigate();
+  const { user, loading, error } = useUser();
+
+  const displayName = user?.displayName || 'Kasutaja';
+  const userEmail = user?.email || '';
 
   return (
     <div className="home-page">
       <div className="home-layout">
-        <SidebarComponent activeNav="dashboard" />
+        <SidebarComponent 
+          activeNav="dashboard" 
+          userName={displayName}
+          userEmail={userEmail}
+          userPicture={user?.pilt}
+        />
 
 
 
         <main className="home-main">
           <header className="home-header">
-            <div className="home-header-name">Karoliine Tamm</div>
+            <div className="home-header-name">{displayName}</div>
 
             <div className="home-search" role="search">
               <img src={Search} alt="" className="home-search-icon-img" aria-hidden="true" />

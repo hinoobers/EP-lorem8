@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import React from 'react'
 // import reactLogo from './assets/react.svg'
 import './App.css'
-import { useState } from 'react' 
+import { useState, useEffect } from 'react' 
 
 import LandingPage from './pages/LandingPage/LandingPage'
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -18,10 +18,24 @@ import PassFormEnd from './pages/Pass/PassFormEnd/PassFormEnd'
 import SupportPage from './pages/Support/SupportPage'
 import Footer from './components/Footer/Footer'
 import KogemuseLisamisPage from './pages/KogemuseLisamisPage/KogemuseLisamisPage'
+import KogemustePage from './pages/Kogemused/KogemustePage'
 
 function App() {
   const [showTerms, setShowTerms] = useState(false) 
   
+  useEffect(() => {
+    // Extract token from URL query parameter and save it
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+    
+    if (token) {
+      // Save token to localStorage
+      localStorage.setItem('authToken', token);
+      
+      // Remove token from URL for cleaner history
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, [])
   
   return (
     <BrowserRouter>
@@ -41,6 +55,7 @@ function App() {
         <Route path='/pass/skills' element={<PassSkillInfo />} />
         <Route path='/pass/end' element={<PassFormEnd />} />
         <Route path='/support' element={<SupportPage />} />
+        <Route path="/kogemused" element={<KogemustePage  />} />
         <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
       </Routes>
 
