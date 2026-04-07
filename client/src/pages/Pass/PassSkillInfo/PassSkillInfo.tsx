@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
 import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -45,6 +46,7 @@ const defaultPreview = {
 const PassSkillInfo: React.FC = () => {
     const navigate = useNavigate();
     const { user, loading, error } = useUser();
+    const { formData, updateSkills } = usePassContext();
     const [currentStep] = useState(3);
 
     const [skills, setSkills] = useState<SkillData[]>([
@@ -87,8 +89,9 @@ const PassSkillInfo: React.FC = () => {
     };
 
     const handleSave = (goForward?: boolean) => {
-        // Navigate forward to final UI as required
-        // Can merge into previewData here if wanted for completeness, but not strictly needed for skills in v1
+        updateSkills({
+            technicalSkills: skills.filter(s => s.name).map(s => s.name)
+        });
         if (goForward) {
             navigate('/pass/end');
         }

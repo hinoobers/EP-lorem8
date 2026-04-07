@@ -1,0 +1,261 @@
+.view-pass-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.view-pass-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.view-pass-header {
+  padding: 24px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.view-pass-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.view-pass-header-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.view-pass-header-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.view-pass-icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+
+.view-pass-icon-button:hover {
+  background-color: #f0f0f0;
+}
+
+.view-pass-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.view-pass-header-divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 0 -24px -24px -24px;
+}
+
+.view-pass-main {
+  padding: 32px 24px;
+}
+
+.view-pass-info-section {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.view-pass-user-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.view-pass-user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  flex-shrink: 0;
+}
+
+.view-pass-user-details {
+  flex: 1;
+}
+
+.view-pass-user-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.view-pass-user-email {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.view-pass-section {
+  margin-bottom: 32px;
+}
+
+.view-pass-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+  margin: 0 0 16px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #667eea;
+  display: inline-block;
+}
+
+.view-pass-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.view-pass-item {
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #667eea;
+}
+
+.view-pass-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+
+.view-pass-item-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  flex: 1;
+}
+
+.view-pass-item-meta {
+  font-size: 13px;
+  color: #999;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.view-pass-item-description {
+  font-size: 14px;
+  color: #555;
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.view-pass-item-date {
+  font-size: 12px;
+  color: #999;
+  margin: 8px 0 0 0;
+}
+
+.view-pass-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.view-pass-skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #f0f4ff;
+  border-radius: 24px;
+  border: 1px solid #d0e0ff;
+}
+
+.view-pass-skill-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.view-pass-skill-level {
+  font-size: 12px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+.view-pass-footer {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.view-pass-meta-text {
+  font-size: 12px;
+  color: #999;
+  margin: 4px 0;
+}
+
+.view-pass-loading,
+.view-pass-error {
+  text-align: center;
+  padding: 60px 24px;
+  color: #666;
+}
+
+.view-pass-error h1 {
+  color: #d32f2f;
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .view-pass-page {
+    padding: 12px;
+  }
+
+  .view-pass-main {
+    padding: 20px 16px;
+  }
+
+  .view-pass-header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .view-pass-header-icons {
+    align-self: flex-end;
+  }
+
+  .view-pass-user-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .view-pass-user-avatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .view-pass-item-header {
+    flex-direction: column;
+  }
+
+  .view-pass-item-meta {
+    align-self: flex-start;
+  }
+}

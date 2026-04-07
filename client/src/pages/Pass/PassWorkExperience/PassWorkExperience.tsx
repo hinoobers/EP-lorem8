@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
 import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -42,33 +43,27 @@ const defaultPreview: WorkExperienceFormData = {
 const PassWorkExperience: React.FC = () => {
   const navigate = useNavigate();
   const { user, loading, error } = useUser();
+  const { formData, updateWorkExperience } = usePassContext();
   const [currentStep] = useState(1);
-  const [formData, setFormData] = useState<WorkExperienceFormData>({
-    title: '',
-    company: '',
-    workType: '',
-    startDate: '',
-    endDate: '',
-    description: '',
-    skills: '',
-  });
-  const [previewData, setPreviewData] = useState<WorkExperienceFormData>(defaultPreview);
+  const [localFormData, setLocalFormData] = useState<WorkExperienceFormData>(formData.workExperience);
+  const [previewData, setPreviewData] = useState<WorkExperienceFormData>(formData.workExperience);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
+    setLocalFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleSave = (goForward?: boolean) => {
+    updateWorkExperience(localFormData);
     setPreviewData((prev) => ({
       ...prev,
       ...Object.fromEntries(
-        Object.entries(formData).map(([key, value]) => [key, value || (prev as any)[key]]),
+        Object.entries(localFormData).map(([key, value]) => [key, value || (prev as any)[key]]),
       ),
     }));
 

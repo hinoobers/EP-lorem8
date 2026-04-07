@@ -44,6 +44,8 @@ function KogemustePage() {
     { id: 'rejected', label: 'Kinnitamata', value: 0, tone: 'red' },
     { id: 'inprogress', label: 'Pooleli', value: 0, tone: 'purple' },
   ]);
+  const [totalExperiences, setTotalExperiences] = useState(0);
+  const [thisMonthExperiences, setThisMonthExperiences] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
@@ -108,6 +110,23 @@ function KogemustePage() {
           { id: 'rejected', label: 'Kinnitamata', value: rejected, tone: 'red' },
           { id: 'inprogress', label: 'Pooleli', value: pooleli, tone: 'purple' },
         ]);
+
+        // Calculate statistics
+        const total = data.experiences.length;
+        setTotalExperiences(total);
+
+        // Calculate experiences added this month
+        const now = new Date();
+        const currentMonth = now.getMonth();
+        const currentYear = now.getFullYear();
+
+        const thisMonth = data.experiences.filter((exp: any) => {
+          if (!exp.created_at) return false;
+          const createdDate = new Date(exp.created_at);
+          return createdDate.getMonth() === currentMonth && createdDate.getFullYear() === currentYear;
+        }).length;
+
+        setThisMonthExperiences(thisMonth);
       } catch (error) {
         console.error('Error fetching experiences:', error);
       }
@@ -192,14 +211,14 @@ function KogemustePage() {
                     <article className="kogemus-highlight-card kogemus-highlight-card--magenta">
                       <div className="kogemus-highlight-icon" aria-hidden="true" />
                       <div className="kogemus-highlight-text">
-                        <div className="kogemus-highlight-value">25</div>
+                        <div className="kogemus-highlight-value">{totalExperiences}</div>
                         <div className="kogemus-highlight-label">Kogemust kokku</div>
                       </div>
                     </article>
                     <article className="kogemus-highlight-card kogemus-highlight-card--cyan">
                       <div className="kogemus-highlight-icon" aria-hidden="true" />
                       <div className="kogemus-highlight-text">
-                        <div className="kogemus-highlight-value">+2</div>
+                        <div className="kogemus-highlight-value">+{thisMonthExperiences}</div>
                         <div className="kogemus-highlight-label">Uut kogemust sel kuul</div>
                       </div>
                     </article>

@@ -1,0 +1,393 @@
+.edit-pass-page {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  background-color: #000000;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #ffffff;
+}
+
+.edit-pass-layout {
+  display: flex;
+  width: 100%;
+}
+
+.edit-pass-main {
+  flex: 1;
+  background-color: #000000;
+  padding: 24px 12px 24px 14px;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.edit-pass-header-group {
+  margin-bottom: 20px;
+}
+
+.edit-pass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.edit-pass-header-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.edit-pass-search {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 8px 12px;
+  flex: 0 1 300px;
+}
+
+.edit-pass-search-icon-img {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  opacity: 0.5;
+}
+
+.edit-pass-search-input {
+  background: none;
+  border: none;
+  color: #ffffff;
+  outline: none;
+  flex: 1;
+  font-size: 13px;
+}
+
+.edit-pass-search-input::placeholder {
+  color: #808080;
+}
+
+.edit-pass-header-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.edit-pass-icon-button {
+  background: none;
+  border: 1px solid #333333;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.edit-pass-icon-button:hover {
+  background-color: #222222;
+}
+
+.edit-pass-icon-img {
+  width: 18px;
+  height: 18px;
+}
+
+.edit-pass-header-divider {
+  height: 1px;
+  background: #333333;
+  margin-top: 16px;
+}
+
+.edit-pass-back-button {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.edit-pass-back-button:hover {
+  opacity: 0.7;
+}
+
+.edit-pass-back-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.edit-pass-shell {
+  display: flex;
+  gap: 20px;
+  margin-right: 20px;
+}
+
+.edit-pass-shell-body {
+  flex: 1;
+  width: 100%;
+}
+
+.edit-pass-content-card {
+  background: #16171d;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.edit-pass-content-header {
+  margin-bottom: 24px;
+}
+
+.edit-pass-content-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-pass-content-title-group {
+  flex: 1;
+}
+
+.edit-pass-content-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.edit-pass-section {
+  margin-bottom: 32px;
+}
+
+.edit-pass-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.edit-pass-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #9088ff;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #333333;
+  flex: 1;
+}
+
+.edit-pass-add-btn {
+  background: #9088ff;
+  color: #000000;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  margin-left: 16px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.edit-pass-add-btn:hover {
+  background: #a89fff;
+  transform: translateY(-2px);
+}
+
+.edit-pass-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-pass-item {
+  padding: 16px;
+  background: #1a1a22;
+  border-radius: 8px;
+  border: 1px solid #333333;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-pass-item-header {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.edit-pass-item-inputs {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.edit-pass-remove-btn {
+  background: #ff6b6b;
+  color: #ffffff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.2s;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edit-pass-remove-btn:hover {
+  background: #ff5252;
+  transform: scale(1.05);
+}
+
+.edit-pass-input {
+  background: #101114;
+  border: 1px solid #333333;
+  color: #ffffff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+}
+
+.edit-pass-input::placeholder {
+  color: #808080;
+}
+
+.edit-pass-input:focus {
+  outline: none;
+  border-color: #9088ff;
+  background-color: #16171d;
+}
+
+.edit-pass-textarea {
+  resize: vertical;
+  min-height: 80px;
+  max-height: 200px;
+}
+
+.edit-pass-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #333333;
+  justify-content: flex-end;
+}
+
+.edit-pass-save-button,
+.edit-pass-cancel-button {
+  padding: 10px 24px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.edit-pass-save-button {
+  background: #9088ff;
+  color: #000000;
+}
+
+.edit-pass-save-button:hover:not(:disabled) {
+  background: #a89fff;
+  transform: translateY(-2px);
+}
+
+.edit-pass-save-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-pass-cancel-button {
+  background: #333333;
+  color: #ffffff;
+}
+
+.edit-pass-cancel-button:hover:not(:disabled) {
+  background: #444444;
+}
+
+.edit-pass-cancel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.edit-pass-error {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+.edit-pass-error h1 {
+  color: #ff6b6b;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.edit-pass-error p {
+  color: #cccccc;
+  margin-bottom: 24px;
+}
+
+.edit-pass-error button {
+  padding: 10px 24px;
+  background: #9088ff;
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-pass-loading {
+  text-align: center;
+  padding: 60px 24px;
+  color: #cccccc;
+}
+
+.edit-pass-empty-message {
+  text-align: center;
+  color: #999999;
+  font-size: 14px;
+  padding: 20px;
+  margin: 0;
+  border: 1px dashed #333333;
+  border-radius: 8px;
+  background: #16171d;
+}
+
+@media (max-width: 768px) {
+  .edit-pass-shell {
+    flex-direction: column;
+  }
+
+  .edit-pass-search {
+    flex: 1;
+  }
+
+  .edit-pass-footer {
+    flex-direction: column;
+  }
+
+  .edit-pass-save-button,
+  .edit-pass-cancel-button {
+    width: 100%;
+  }
+}

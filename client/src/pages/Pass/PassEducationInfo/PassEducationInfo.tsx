@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../../components/sidebar/Sidebar';
 import { useUser } from '../../../hooks/useUser';
+import { usePassContext } from '../../../context/PassContext';
 
 import Mail from '../../../assets/dark/Mail.svg';
 import Bell from '../../../assets/dark/Bell.svg';
@@ -31,29 +32,23 @@ type EducationFormData = {
 const PassEducationInfo: React.FC = () => {
   const navigate = useNavigate();
   const { user, loading, error } = useUser();
+  const { formData, updateEducationInfo } = usePassContext();
   const certificateInputRef = useRef<HTMLInputElement>(null);
   const [currentStep] = useState(2);
-  const [formData, setFormData] = useState<EducationFormData>({
-    institutionName: '',
-    level: '',
-    curriculum: '',
-    startYear: '',
-    endYear: '',
-    courses: '',
-  });
+  const [localFormData, setLocalFormData] = useState<EducationFormData>(formData.educationInfo as any);
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
   ) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
+    setLocalFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
   const handleSave = (goForward?: boolean) => {
-    console.log('Save education form', formData);
+    updateEducationInfo(localFormData as any);
     if (goForward) {
       navigate('/pass/skills');
     }
