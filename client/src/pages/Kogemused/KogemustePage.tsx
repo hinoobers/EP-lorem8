@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SidebarComponent from '../../components/sidebar/Sidebar';
 import { useUser } from '../../hooks/useUser';
 import Search from '../../assets/dark/Search.svg';
@@ -23,105 +23,98 @@ type ExperienceCard = {
   text: string;
   date: string;
   skills: string[];
-  tone: 'green' | 'magenta' | 'purple' | 'orange';
+  tone: 'green' | 'orange' | 'red';
+  confirmed: number;
+  rejectReason: string | null;
+  isPending: boolean;
 };
 
-const statusCards: StatusCard[] = [
-  { id: 'approved', label: 'Kinnitatud', value: 20, tone: 'green' },
-  { id: 'pending', label: 'Kinnitamisel', value: 2, tone: 'orange' },
-  { id: 'rejected', label: 'Kinnitamata', value: 3, tone: 'red' },
-  { id: 'inprogress', label: 'Pooleli', value: 1, tone: 'purple' },
-];
 
-const experienceCards: ExperienceCard[] = [
-  {
-    id: '1',
-    tag: 'tookogemus',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'green',
-  },
-  {
-    id: '2',
-    tag: 'erasmus+',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'green',
-  },
-  {
-    id: '3',
-    tag: 'vabatahtlik',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'magenta',
-  },
-  {
-    id: '4',
-    tag: 'projekt',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'purple',
-  },
-  {
-    id: '5',
-    tag: 'kursus',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'orange',
-  },
-  {
-    id: '6',
-    tag: 'projekt',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'purple',
-  },
-  {
-    id: '7',
-    tag: 'vabatahtlik',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'magenta',
-  },
-  {
-    id: '8',
-    tag: 'vabatahtlik',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'orange',
-  },
-  {
-    id: '9',
-    tag: 'kursus',
-    title: 'Kogemuse nimi',
-    text: 'Tekst tekst tekst tekst',
-    date: '01.01.2026',
-    skills: ['skill', 'skill'],
-    tone: 'orange',
-  },
-];
 
 function KogemustePage() {
   const navigate = useNavigate();
   const { user } = useUser();
   const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
   const userEmail = user?.email || '';
+  
+  const [experiences, setExperiences] = useState<ExperienceCard[]>([]);
+  const [statusCards, setStatusCards] = useState<StatusCard[]>([
+    { id: 'approved', label: 'Kinnitatud', value: 0, tone: 'green' },
+    { id: 'pending', label: 'Kinnitamisel', value: 0, tone: 'orange' },
+    { id: 'rejected', label: 'Kinnitamata', value: 0, tone: 'red' },
+    { id: 'inprogress', label: 'Pooleli', value: 0, tone: 'purple' },
+  ]);
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        if (!token) return;
+
+        const response = await fetch('https://evpass.pnglin.byenoob.com/api/user/kogemused', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) throw new Error('Failed to fetch experiences');
+
+        const data = await response.json();
+
+        const transformedExperiences: ExperienceCard[] = data.experiences.map((exp: any) => {
+          let tone: 'green' | 'orange' | 'red' = 'red'; // default
+          if (exp.confirmed === 1) {
+            tone = 'green'; // confirmed
+          } else if (exp.isPending) {
+            tone = 'orange'; // pending
+          } else {
+            tone = 'red'; // not sent or rejected
+          }
+
+          return {
+            id: String(exp.id),
+            tag: exp.type || 'tookogemus',
+            title: exp.name,
+            text: exp.organisatsioon,
+            date: exp.start,
+            skills: typeof exp.oskused === 'string' ? JSON.parse(exp.oskused) : (exp.oskused || []),
+            tone: tone,
+            confirmed: exp.confirmed,
+            rejectReason: exp.reject_reason,
+            isPending: exp.isPending,
+          };
+        });
+
+        setExperiences(transformedExperiences);
+
+        // Calculate status counts
+        const approved = data.experiences.filter((exp: any) => exp.confirmed === 1).length;
+        const rejected = data.experiences.filter((exp: any) => exp.reject_reason !== null).length;
+        const pending = data.experiences.filter((exp: any) => exp.isPending).length;
+        const pooleli = data.experiences.filter((exp: any) => exp.confirmed === 0 && !exp.isPending).length;
+        
+        setStatusCards([
+          { id: 'approved', label: 'Kinnitatud', value: approved, tone: 'green' },
+          { id: 'pending', label: 'Kinnitamisel', value: pending, tone: 'orange' },
+          { id: 'rejected', label: 'Kinnitamata', value: rejected, tone: 'red' },
+          { id: 'inprogress', label: 'Pooleli', value: pooleli, tone: 'purple' },
+        ]);
+      } catch (error) {
+        console.error('Error fetching experiences:', error);
+      }
+    };
+
+    if (user) fetchExperiences();
+  }, [user]);
 
   const archiveItems = Array.from({ length: 8 }, (_, idx) => ({
     id: String(idx + 1),
@@ -238,7 +231,7 @@ function KogemustePage() {
                   </div>
 
                   <div className="kogemus-cards-grid">
-                    {experienceCards.map((card) => (
+                    {experiences.map((card) => (
                       <article key={card.id} className={`kogemus-entry-card kogemus-entry-card--${card.tone}`}>
                         <div className="kogemus-entry-top">
                           <span className="kogemus-entry-tag">{card.tag}</span>

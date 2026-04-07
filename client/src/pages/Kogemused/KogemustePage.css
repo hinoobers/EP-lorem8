@@ -22,6 +22,7 @@
   min-width: 0;
 }
 
+
 .kogemus-content {
   margin-top: 8px;
   width: 100%;
@@ -31,7 +32,7 @@
 .kogemus-dashboard {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 10px;
   width: 100%;
 }
 
@@ -39,7 +40,6 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 2px;
 }
 
 .kogemus-chip-button {
@@ -64,11 +64,10 @@
 
 .kogemus-metrics-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.2fr) minmax(340px, 0.95fr);
   gap: 10px;
-  align-items: end;
+  align-items: start;
   width: 100%;
-  margin-bottom: 14px;
 }
 
 .kogemus-status-list {
@@ -128,6 +127,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: -4px;
 }
 
 .kogemus-section-title {
@@ -238,7 +238,8 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   gap: 12px;
   width: 100%;
-  margin-top: 0;
+  margin-top: -2px;
+  align-items: start;
 }
 
 .kogemus-card-panel {
@@ -248,7 +249,6 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
-  min-height: 566px;
 }
 
 .kogemus-panel-header {
@@ -283,7 +283,6 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
-  flex: 1;
 }
 
 .kogemus-entry-card {
@@ -292,24 +291,22 @@
   background: #16171d;
   padding: 8px;
   min-height: 158px;
+  max-height: 250px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .kogemus-entry-card--green {
   border-color: #58dd53;
 }
 
-.kogemus-entry-card--magenta {
-  border-color: #ff00b8;
-}
-
-.kogemus-entry-card--purple {
-  border-color: #9088ff;
-}
-
 .kogemus-entry-card--orange {
-  border-color: #f0b534;
+  border-color: #ff9c2f;
+}
+
+.kogemus-entry-card--red {
+  border-color: #ff4558;
 }
 
 .kogemus-entry-top {
@@ -374,16 +371,12 @@
   color: #84f489;
 }
 
-.kogemus-entry-card--magenta .kogemus-entry-skills span {
-  color: #ff69db;
-}
-
-.kogemus-entry-card--purple .kogemus-entry-skills span {
-  color: #afa8ff;
-}
-
 .kogemus-entry-card--orange .kogemus-entry-skills span {
-  color: #ffd16a;
+  color: #ffc070;
+}
+
+.kogemus-entry-card--red .kogemus-entry-skills span {
+  color: #ff8fa8;
 }
 
 .kogemus-archive-list {

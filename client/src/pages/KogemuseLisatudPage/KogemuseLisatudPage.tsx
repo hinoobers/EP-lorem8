@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import SidebarComponent from '../../components/sidebar/Sidebar';
 import { useUser } from '../../hooks/useUser';
 import Search from '../../assets/dark/Search.svg';
@@ -10,9 +10,58 @@ import './KogemuseLisatudPage.css';
 
 function KogemuseLisatudPage() {
   const navigate = useNavigate();
+  const { experienceId } = useParams();
   const { user } = useUser();
   const displayName = user ? `${user.displayName || ''}` : 'Kasutaja';
   const userEmail = user?.email || '';
+  const [verifierEmail, setVerifierEmail] = useState('');
+  const [sending, setSending] = useState(false);
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+    }
+  }, [navigate]);
+
+  const handleSendVerification = async () => {
+    if (!verifierEmail || !experienceId) {
+      setMessage('Palun sisestage kinnitaja e-mail');
+      return;
+    }
+
+    setSending(true);
+    setMessage('');
+
+    try {
+      const token = localStorage.getItem('authToken');
+      const response = await fetch('https://evpass.pnglin.byenoob.com/api/verify-experience', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          experienceId,
+          verifierEmail
+        })
+      });
+
+      const result = await response.json();
+      if (response.ok) {
+        setMessage('Kinnitamispalve saadetud edukalt!');
+        navigate('/kogemused');
+      } else {
+        setMessage(result.message || 'Viga kinnitamispalve saatmisel');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('Viga: ' + error.message);
+    } finally {
+      setSending(false);
+    }
+  };
 
   return (
     <div className="kogemus-lisatud-page">
@@ -70,8 +119,21 @@ function KogemuseLisatudPage() {
                     type="email"
                     placeholder=""
                     autoComplete="email"
+                    value={verifierEmail}
+                    onChange={(e) => setVerifierEmail(e.target.value)}
                   />
                 </div>
+                {message && (
+                  <div style={{
+                    padding: '10px',
+                    marginBottom: '20px',
+                    backgroundColor: message.includes('edukalt') ? '#d4edda' : '#f8d7da',
+                    color: message.includes('edukalt') ? '#155724' : '#721c24',
+                    borderRadius: '4px'
+                  }}>
+                    {message}
+                  </div>
+                )}
 
                 <p className="kogemus-lisatud-help">
                   Saadame kogemuse kinnitajale ülevaatamiseks. Pärast kinnitamist muutub kogemuse staatus märgiks
@@ -83,8 +145,13 @@ function KogemuseLisatudPage() {
                 <button type="button" className="kogemus-lisatud-btn kogemus-lisatud-btn--ghost" onClick={() => navigate('/kogemused')}>
                   Jäta vahele
                 </button>
-                <button type="button" className="kogemus-lisatud-btn kogemus-lisatud-btn--primary" onClick={() => navigate('/kogemused')}>
-                  Saada
+                <button 
+                  type="button" 
+                  className="kogemus-lisatud-btn kogemus-lisatud-btn--primary" 
+                  onClick={handleSendVerification}
+                  disabled={!verifierEmail || sending}
+                >
+                  {sending ? 'Saatmine...' : 'Saada'}
                 </button>
               </div>
             </section>

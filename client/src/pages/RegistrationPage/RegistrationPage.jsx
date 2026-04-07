@@ -216,7 +216,7 @@ function RegistrationPage({ onShowTerms }) {
             <span>Loo konto muul viisil</span>
           </div>
 
-          <button type="button" className="google-button">
+          <button type="button" className="google-button" onClick={() => { window.location.href = "https://evpass.pnglin.byenoob.com/auth/google";}}>
             <img
               src={googleLoginButton}
               alt="Loo konto Google'iga"

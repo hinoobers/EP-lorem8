@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SidebarComponent from '../../components/sidebar/Sidebar';
 import Mail from '../../assets/dark/Mail.svg';
@@ -19,6 +19,13 @@ import './HomePageDark.css';
 function HomePageDark() {
   const navigate = useNavigate();
   const { user, loading, error } = useUser();
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (!token && !loading) {
+      navigate('/login');
+    }
+  }, [navigate, loading]);
 
   const displayName = user?.displayName || 'Kasutaja';
   const userEmail = user?.email || '';

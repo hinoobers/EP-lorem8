@@ -58,7 +58,7 @@ function App() {
         <Route path='/support' element={<SupportPage />} />
         <Route path="/kogemused" element={<KogemustePage  />} />
         <Route path="/kogemuse-lisamine" element={<KogemuseLisamisPage />} />
-        <Route path="/kogemus-lisatud" element={<KogemuseLisatudPage />} />
+        <Route path="/kogemus-lisatud/:experienceId" element={<KogemuseLisatudPage />} />
       </Routes>
 
       <Footer />

@@ -12,7 +12,7 @@ import ChevronRight from '../../assets/dark/Chevron right.svg';
 import './Sidebar.css';
 
 interface SidebarProps {
-  activeNav?: 'dashboard' | 'pass' | 'experiences';
+  activeNav?: 'dashboard' | 'pass' | 'experiences' | 'support';
   userName?: string;
   userEmail?: string;
   userPicture?: string;
@@ -36,7 +36,8 @@ function Sidebar({
   const isSidebarOpen = propOpen !== undefined ? propOpen : internalOpen;
   const setIsSidebarOpen = propSetOpen || setInternalOpen;
 
-  console.log('Sidebar - userPicture prop value:', userPicture);
+  console.log('Sidebar activeNav:', activeNav);
+  console.log('Is support?', activeNav === 'support');
 
   const handleNavigate = (path: string) => {
     if (onNavigate) {
@@ -111,7 +112,11 @@ function Sidebar({
           <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
           <span>Settings</span>
         </button>
-        <button type="button" className="home-sidebar-link" onClick={() => handleNavigate('/support')}>
+        <button 
+          type="button" 
+          className={`home-sidebar-link ${activeNav === 'support' ? 'home-sidebar-link--active' : ''}`}
+          onClick={() => handleNavigate('/support')}
+        >
           <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
           <span>Support</span>
         </button>
@@ -131,21 +136,6 @@ function Sidebar({
             <div className="home-user-email">{userEmail}</div>
           </div>
           <img src={ChevronRight} alt="" className="home-user-chevron-img" aria-hidden="true" />
-        </div>
-
-        <div className="home-theme-toggle" aria-label="Välimuse valik">
-          <button type="button" className="home-theme-pill home-theme-pill--active">
-            <span className="home-theme-icon" aria-hidden="true">
-              <img src={Sun} alt="" />
-            </span>
-            <span>Light</span>
-          </button>
-          <button type="button" className="home-theme-pill home-theme-pill--muted">
-            <span className="home-theme-icon" aria-hidden="true">
-              <img src={Moon} alt="" />
-            </span>
-            <span>Dark</span>
-          </button>
         </div>
       </div>
     </aside>
