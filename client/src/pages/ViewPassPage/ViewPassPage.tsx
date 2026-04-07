@@ -108,7 +108,7 @@ const ViewPassPage: React.FC = () => {
           <section className="view-pass-info-section">
             <div className="view-pass-user-card">
               <div className="view-pass-user-avatar" aria-hidden="true" >
-                <img src={pass.pilt}/>
+                <img src={pass.personalInfo.pilt}/>
               </div>
               <div className="view-pass-user-details">
                 <h2 className="view-pass-user-name">{pass.name}</h2>
