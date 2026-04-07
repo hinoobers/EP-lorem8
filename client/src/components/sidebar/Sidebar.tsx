@@ -110,7 +110,7 @@ function Sidebar({
       <div className="home-sidebar-bottom">
         <button type="button" className="home-sidebar-link">
           <img src={Settings} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-          <span>Settings</span>
+          <span>Sätted</span>
         </button>
         <button 
           type="button" 
@@ -118,7 +118,7 @@ function Sidebar({
           onClick={() => handleNavigate('/support')}
         >
           <img src={Headphones} alt="" className="home-sidebar-icon-img" aria-hidden="true" />
-          <span>Support</span>
+          <span>Kasutajatugi</span>
         </button>
 
         <div className="home-user-card">
